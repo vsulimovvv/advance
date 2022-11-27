@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    @include('./components/base/_meta.html')
+    @include('./components/base/_links.html')
+  </head>
+
+  <body>
+    @include('./components/_popups.html')
+
+    <div class="site-wrapper">
+      @include('./components/_header.html')
+
+      <main class="main">
+        @include('./components/_promo-seo.html')
+        @include('./components/_descr-seo.html')
+        @include('./components/_about-development-seo.html')
+        @include('./components/_cases.html')
+        @include('./components/_scheme-seo.html')
+        @include('./components/_faq-seo.html')
+        @include('./components/_additionally-seo.html')
+        @include('./components/_order.html')
+      </main>
+      @include('./components/_footer.html')
+    </div>
+
+    @include('./components/base/_scripts.html')
+  </body>
+</html>

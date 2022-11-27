@@ -16,7 +16,7 @@ window.addEventListener('DOMContentLoaded', () => {
         });
       }
     });
-  
+
     // const additionally = document.querySelectorAll('.additionally');
 
     // additionally.forEach((el) => {
@@ -104,21 +104,17 @@ window.addEventListener('DOMContentLoaded', () => {
   //   // * ===== Nice Select
   //   // $('select').niceSelect();
 
-  //   // * ===== Slider
-  //   (function slider() {
-  //     const sliderEl = document.querySelector('.works__slider');
-  //     new Swiper(sliderEl, {
-  //       pagination: {
-  //         el: '.swiper-pagination',
-  //       },
-  //       slidesPerView: 'auto',
-  //       spaceBetween: 20,
-  //       navigation: {
-  //         nextEl: '.works__slider .swiper-button-next',
-  //         prevEl: '.works__slider .swiper-button-prev',
-  //       },
-  //     });
-  //   })();
+  // * ===== Slider
+  (function slider() {
+    const sliderEl = document.querySelector('.cases__slider');
+    new Swiper(sliderEl, {
+      slidesPerView: 1,
+      navigation: {
+        nextEl: '.cases__slider .swiper-button-next',
+        prevEl: '.cases__slider .swiper-button-prev',
+      },
+    });
+  })();
 
   //   // * ===== Slider
   //   (function slider() {
