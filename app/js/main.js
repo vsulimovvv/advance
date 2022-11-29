@@ -3,6 +3,215 @@ window.addEventListener('DOMContentLoaded', () => {
 
   AOS.init();
 
+  //
+  const lerp = (current, target, factor) =>
+    current * (1 - factor) + target * factor;
+
+  let mousePosition = { x: 0, y: 0 };
+  window.addEventListener('mousemove', (e) => {
+    mousePosition.x = e.pageX;
+    mousePosition.y = e.pageY;
+  });
+
+  const calculateDistance = (x1, y1, x2, y2) => {
+    return Math.hypot(x1 - x2, y1 - y2);
+  };
+
+  // ------------------------------------------------------------------------
+  // class MagneticObject {
+  //   constructor(domElement) {
+  //     this.domElement = domElement;
+  //     this.boundingClientRect = this.domElement.getBoundingClientRect();
+  //     this.triggerArea = 200;
+  //     this.interpolationFactor = 0.8;
+
+  //     this.lerpingData = {
+  //       x: { current: 0, target: 0 },
+  //       y: { current: 0, target: 0 },
+  //     };
+
+  //     this.render();
+  //     this.resize();
+  //   }
+
+  //   resize() {
+  //     window.addEventListener('resize', () => {
+  //       this.boundingClientRect = this.domElement.getBoundingClientRect();
+  //     });
+  //   }
+
+  //   render() {
+  //     const distanceFromMouseToCenter = calculateDistance(
+  //       mousePosition.x,
+  //       mousePosition.y,
+  //       this.boundingClientRect.left + this.boundingClientRect.width / 2,
+  //       this.boundingClientRect.top + this.boundingClientRect.height / 2
+  //     );
+
+  //     let targetHolder = { x: 0, y: 0 };
+
+  //     if (distanceFromMouseToCenter < this.triggerArea) {
+  //       this.domElement.classList.add('focus');
+  //       targetHolder.x =
+  //         (mousePosition.x -
+  //           (this.boundingClientRect.left +
+  //             this.boundingClientRect.width / 2)) *
+  //         0.2;
+  //       targetHolder.y =
+  //         (mousePosition.y -
+  //           (this.boundingClientRect.top +
+  //             this.boundingClientRect.height / 2)) *
+  //         0.2;
+  //       console.log(targetHolder);
+  //     } else {
+  //       this.domElement.classList.remove('focus');
+  //     }
+  //     this.lerpingData['x'].target = targetHolder.x;
+  //     this.lerpingData['y'].target = targetHolder.y;
+
+  //     for (const item in this.lerpingData) {
+  //       this.lerpingData[item].current = lerp(
+  //         this.lerpingData[item].current,
+  //         this.lerpingData[item].target,
+  //         this.interpolationFactor
+  //       );
+  //     }
+
+  //     this.domElement.style.transform = `translate(${this.lerpingData['x'].current}px, ${this.lerpingData['y'].current}px)`;
+
+  //     window.requestAnimationFrame(() => this.render());
+  //   }
+  // }
+
+  // const buttons = document.querySelectorAll('button');
+  // buttons.forEach((button) => {
+  //   return button;
+  // });
+  // new MagneticObject(button);
+  //
+  // !
+  const magneticMouseEvent = {
+    power: {
+      x: 20,
+      y: 20,
+    },
+
+    events: [],
+    ing: false,
+    target: null,
+
+    onInit() {
+      const _this = this;
+
+      //===
+      const events = document.querySelectorAll('.magnetic-btn');
+      for (let i = 0; i < events.length; i++) {
+        _this.events.push({
+          el: events[i],
+          enter: {
+            func: null,
+            event: null,
+          },
+          leave: {
+            func: null,
+            event: null,
+          },
+        });
+      }
+
+      //===
+      for (let i = 0; i < this.events.length; i++) {
+        const v = this.events[i];
+        v.enter.func = function (e) {
+          _this.target = e.target;
+          _this.ing = true;
+        };
+        v.enter.event = v.el.addEventListener('mouseenter', v.enter.func);
+        v.leave.func = function (e) {
+          _this.onMouseLeave();
+          _this.ing = false;
+        };
+        v.leave.event = v.el.addEventListener('mouseleave', v.leave.func);
+      }
+    },
+
+    onMouseMove(e) {
+      //===
+      if (this.ing && this.target) {
+        const x = e.clientX;
+        const y = e.clientY;
+        const rect = this.target.getBoundingClientRect();
+        const ax = ((x - rect.left) / rect.width - 0.5) * 2; // -1 ~ 1
+        const ay = ((y - rect.top) / rect.height - 0.5) * 2; // -1 ~ 1
+        const dx = (ax * 180 * Math.PI) / 180;
+        const dy = (ay * 180 * Math.PI) / 180;
+        gsap.to(this.target, {
+          duration: 0.4,
+          rotation: dx,
+          x: dx * this.power.x,
+          y: dy * this.power.y,
+        });
+      }
+    },
+
+    onMouseLeave() {
+      gsap.to(this.target, {
+        duration: 0.8,
+        rotation: 0,
+        x: 0,
+        y: 0,
+        ease: 'power2.out',
+      });
+    },
+
+    onDestroy() {
+      //===
+      for (let i = 0; i < this.events.length; i++) {
+        const v = this.events[i];
+        v.el.removeEventListener('mouseenter', v.enter.func);
+        v.el.removeEventListener('mouseleave', v.leave.func);
+      }
+      this.events = [];
+
+      //===
+      this.ing = false;
+    },
+  };
+
+  magneticMouseEvent.onInit();
+  window.addEventListener('mousemove', (e) => {
+    magneticMouseEvent.onMouseMove(e);
+  });
+  // !
+  // * ==== Magnetic Button
+  // var magnets = document.querySelectorAll('button ');
+  // var strength = 50;
+
+  // magnets.forEach((magnet) => {
+  //   magnet.addEventListener('mousemove', moveMagnet);
+  //   magnet.addEventListener('mouseout', function (event) {
+  //     TweenMax.to(event.currentTarget, 1, { x: 0, y: 0, ease: Power4.easeOut });
+  //   });
+  // });
+
+  // function moveMagnet(event) {
+  //   var magnetButton = event.currentTarget;
+  //   var bounding = magnetButton.getBoundingClientRect();
+
+  //   TweenMax.to(magnetButton, 1, {
+  //     x:
+  //       ((event.clientX - bounding.left) / magnetButton.offsetWidth - 0.11) *
+  //       strength,
+  //     y:
+  //       ((event.clientY - bounding.top) / magnetButton.offsetHeight - 0.11) *
+  //       strength,
+  //     ease: Power4.easeOut,
+  //   });
+
+  // magnetButton.style.transform = 'translate(' + (((( event.clientX - bounding.left)/(magnetButton.offsetWidth))) - 0.5) * strength + 'px,'+ (((( event.clientY - bounding.top)/(magnetButton.offsetHeight))) - 0.5) * strength + 'px)';
+  // }
+  // !
+
   function parallaxPromo() {
     const promo = document.querySelectorAll('.promo');
 
@@ -12,6 +221,19 @@ window.addEventListener('DOMContentLoaded', () => {
           elements: '.promo__preview',
           moveFactor: 5,
           wrap: '.promo',
+          perspective: '100px',
+        });
+      }
+    });
+
+    const launch = document.querySelectorAll('.launch');
+
+    launch.forEach((el) => {
+      if (el) {
+        parallaxMouse({
+          elements: '.launch__img',
+          moveFactor: 15,
+          wrap: '.launch',
           perspective: '100px',
         });
       }
@@ -29,6 +251,19 @@ window.addEventListener('DOMContentLoaded', () => {
     //     });
     //   }
     // });
+
+    const additionally = document.querySelectorAll('.about-page__top');
+
+    additionally.forEach((el) => {
+      if (el) {
+        parallaxMouse({
+          elements: '.about-page__top img',
+          moveFactor: 0.0000001,
+          wrap: '.about-page__top',
+          perspective: '100px',
+        });
+      }
+    });
   }
   parallaxPromo();
 
@@ -98,8 +333,8 @@ window.addEventListener('DOMContentLoaded', () => {
   //   },
   // });
 
-  //   // * ===== Mask input
-  //   $('input[type="tel"]').mask('+7 (999) 999-99-99');
+    // * ===== Mask input
+    $('input[type="tel"]').mask('+7 (999) 999-99-99');
 
   //   // * ===== Nice Select
   //   // $('select').niceSelect();

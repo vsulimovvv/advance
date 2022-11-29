@@ -1,1 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="9" height="6"/>
+<svg xmlns="http://www.w3.org/2000/svg"
+ xmlns:xlink="http://www.w3.org/1999/xlink"
+ width="9px" height="6px"  viewBox="0 0 9 6">
+<path fill-rule="evenodd"  fill="#1f212e"
+ d="M4.4999695,4.9995117 C4.4999695,4.9995117 "/>
+</svg>
