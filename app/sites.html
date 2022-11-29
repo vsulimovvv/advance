@@ -90,7 +90,7 @@
 
 
     <div class="site-wrapper">
-      <header class="header">
+      <header class="header header--white">
   <!-- Mobile Menu -->
   <div class="overlay"></div>
 
@@ -177,7 +177,7 @@
   <div class="container">
     <div class="header__wrapper">
       <a class="header__logo logo" href="#">
-        <img src="img/logo.png" alt="logo" />
+        <img src="img/logo-dark.png" alt="logo" />
       </a>
       <a class="header__link" href="tel:+79632975336">+7 (963) 297 53 36</a>
       <div class="header-contacts">
@@ -808,7 +808,11 @@
 
         <section class="order">
   <div class="container">
-    <div class="order__uppertitle uppertitle">
+    <div
+      class="order__uppertitle uppertitle"
+      data-aos="fade-up"
+      data-aos-duration="1000"
+    >
       <span class="uppertitle__text">ЗАЯВКА</span>
 
       <span class="uppertitle__box"></span>
@@ -816,12 +820,78 @@
     </div>
 
     <div class="order__wrapper">
-      <p class="order__text">
+      <p class="order__text" data-aos="fade-up" data-aos-duration="1000">
         Давайте начнем работу <br />
         над Вашим проектом
       </p>
 
-      <form class="order__form">ИМЯ</form>
+      <form class="order__form form-order">
+        <div
+          class="form-order__wrapper"
+          data-aos="fade-up"
+          data-aos-duration="1000"
+        >
+          <div class="form-order__inner active">
+            <div class="form-order__group">
+              <p class="form-order__label">шаг 1 → <span>ИМЯ</span></p>
+
+              <input
+                class="form-order__input"
+                type="text"
+                placeholder="Введите Ваше имя"
+                required
+              />
+              <span class="form-order__line"></span>
+            </div>
+          </div>
+          <div
+            class="form-order__inner"
+            data-aos="fade-up"
+            data-aos-duration="1000"
+          >
+            <div class="form-order__group">
+              <p class="form-order__label">
+                шаг 2 → <span>КОНТАКТНЫЙ ТЕЛЕФОН</span>
+              </p>
+
+              <input
+                class="form-order__input"
+                type="tel"
+                placeholder="+7 (___) ___ - __ - __"
+                required
+              />
+              <span class="form-order__line"></span>
+            </div>
+          </div>
+          <div
+            class="form-order__inner"
+            data-aos="fade-up"
+            data-aos-duration="1000"
+          >
+            <div class="form-order__group">
+              <p class="form-order__label">шаг 3 → <span>ВЫБРАТЬ БРИФ</span></p>
+              <input
+                class="form-order__input"
+                type="text"
+                placeholder="Выберите бриф из списка"
+                required
+              />
+              <span class="form-order__line"></span>
+            </div>
+          </div>
+          <button
+            class="form-order__next magnetic-btn"
+            type="submit"
+            data-aos="fade-up"
+            data-aos-duration="1000"
+          >
+            Далее
+          </button>
+        </div>
+        <button class="form-order__btn btn-submit magnetic-btn" type="submit">
+          Отправить заявку
+        </button>
+      </form>
     </div>
   </div>
 </section>

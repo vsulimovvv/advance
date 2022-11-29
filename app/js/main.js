@@ -3,93 +3,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
   AOS.init();
 
-  //
-  const lerp = (current, target, factor) =>
-    current * (1 - factor) + target * factor;
-
-  let mousePosition = { x: 0, y: 0 };
-  window.addEventListener('mousemove', (e) => {
-    mousePosition.x = e.pageX;
-    mousePosition.y = e.pageY;
-  });
-
-  const calculateDistance = (x1, y1, x2, y2) => {
-    return Math.hypot(x1 - x2, y1 - y2);
-  };
-
-  // ------------------------------------------------------------------------
-  // class MagneticObject {
-  //   constructor(domElement) {
-  //     this.domElement = domElement;
-  //     this.boundingClientRect = this.domElement.getBoundingClientRect();
-  //     this.triggerArea = 200;
-  //     this.interpolationFactor = 0.8;
-
-  //     this.lerpingData = {
-  //       x: { current: 0, target: 0 },
-  //       y: { current: 0, target: 0 },
-  //     };
-
-  //     this.render();
-  //     this.resize();
-  //   }
-
-  //   resize() {
-  //     window.addEventListener('resize', () => {
-  //       this.boundingClientRect = this.domElement.getBoundingClientRect();
-  //     });
-  //   }
-
-  //   render() {
-  //     const distanceFromMouseToCenter = calculateDistance(
-  //       mousePosition.x,
-  //       mousePosition.y,
-  //       this.boundingClientRect.left + this.boundingClientRect.width / 2,
-  //       this.boundingClientRect.top + this.boundingClientRect.height / 2
-  //     );
-
-  //     let targetHolder = { x: 0, y: 0 };
-
-  //     if (distanceFromMouseToCenter < this.triggerArea) {
-  //       this.domElement.classList.add('focus');
-  //       targetHolder.x =
-  //         (mousePosition.x -
-  //           (this.boundingClientRect.left +
-  //             this.boundingClientRect.width / 2)) *
-  //         0.2;
-  //       targetHolder.y =
-  //         (mousePosition.y -
-  //           (this.boundingClientRect.top +
-  //             this.boundingClientRect.height / 2)) *
-  //         0.2;
-  //       console.log(targetHolder);
-  //     } else {
-  //       this.domElement.classList.remove('focus');
-  //     }
-  //     this.lerpingData['x'].target = targetHolder.x;
-  //     this.lerpingData['y'].target = targetHolder.y;
-
-  //     for (const item in this.lerpingData) {
-  //       this.lerpingData[item].current = lerp(
-  //         this.lerpingData[item].current,
-  //         this.lerpingData[item].target,
-  //         this.interpolationFactor
-  //       );
-  //     }
-
-  //     this.domElement.style.transform = `translate(${this.lerpingData['x'].current}px, ${this.lerpingData['y'].current}px)`;
-
-  //     window.requestAnimationFrame(() => this.render());
-  //   }
-  // }
-
-  // const buttons = document.querySelectorAll('button');
-  // buttons.forEach((button) => {
-  //   return button;
-  // });
-  // new MagneticObject(button);
-  //
-  // !
+  // * ==== Magnetic Button
   const magneticMouseEvent = {
     power: {
       x: 20,
@@ -183,34 +97,6 @@ window.addEventListener('DOMContentLoaded', () => {
     magneticMouseEvent.onMouseMove(e);
   });
   // !
-  // * ==== Magnetic Button
-  // var magnets = document.querySelectorAll('button ');
-  // var strength = 50;
-
-  // magnets.forEach((magnet) => {
-  //   magnet.addEventListener('mousemove', moveMagnet);
-  //   magnet.addEventListener('mouseout', function (event) {
-  //     TweenMax.to(event.currentTarget, 1, { x: 0, y: 0, ease: Power4.easeOut });
-  //   });
-  // });
-
-  // function moveMagnet(event) {
-  //   var magnetButton = event.currentTarget;
-  //   var bounding = magnetButton.getBoundingClientRect();
-
-  //   TweenMax.to(magnetButton, 1, {
-  //     x:
-  //       ((event.clientX - bounding.left) / magnetButton.offsetWidth - 0.11) *
-  //       strength,
-  //     y:
-  //       ((event.clientY - bounding.top) / magnetButton.offsetHeight - 0.11) *
-  //       strength,
-  //     ease: Power4.easeOut,
-  //   });
-
-  // magnetButton.style.transform = 'translate(' + (((( event.clientX - bounding.left)/(magnetButton.offsetWidth))) - 0.5) * strength + 'px,'+ (((( event.clientY - bounding.top)/(magnetButton.offsetHeight))) - 0.5) * strength + 'px)';
-  // }
-  // !
 
   function parallaxPromo() {
     const promo = document.querySelectorAll('.promo');
@@ -238,32 +124,6 @@ window.addEventListener('DOMContentLoaded', () => {
         });
       }
     });
-
-    // const additionally = document.querySelectorAll('.additionally');
-
-    // additionally.forEach((el) => {
-    //   if (el) {
-    //     parallaxMouse({
-    //       elements: '.additionally__preview',
-    //       moveFactor: 0.0000001,
-    //       wrap: '.additionally',
-    //       perspective: '11px',
-    //     });
-    //   }
-    // });
-
-    const additionally = document.querySelectorAll('.about-page__top');
-
-    additionally.forEach((el) => {
-      if (el) {
-        parallaxMouse({
-          elements: '.about-page__top img',
-          moveFactor: 0.0000001,
-          wrap: '.about-page__top',
-          perspective: '100px',
-        });
-      }
-    });
   }
   parallaxPromo();
 
@@ -281,63 +141,78 @@ window.addEventListener('DOMContentLoaded', () => {
   //   0.1
   // );
   // ! Header and Promo
-  // tl.from('.header__logo', .7, {
-  //   y: -20,
-  //   opacity: 0,
-  // });
-  // tl.from('.header__link', 0.4, {
-  //   y: -20,
-  //   opacity: 0,
-  // });
-  // tl.from('.header-contacts', 0.4, {
-  //   y: -20,
-  //   opacity: 0,
-  // });
+  tl.from('.header__logo', 0.7, {
+    y: -20,
+    opacity: 0,
+  });
+  tl.from('.header__link', 0.4, {
+    y: -20,
+    opacity: 0,
+  });
+  tl.from('.header-contacts', 0.4, {
+    y: -20,
+    opacity: 0,
+  });
+  tl.from('nav', 0.4, {
+    y: -20,
+    opacity: 0,
+  });
 
-  // tl.from('nav', 0.4, {
-  //   y: -20,
-  //   opacity: 0,
-  // });
-
-  // tl.from('.promo__title', 0.4, {
-  //   y: -20,
-  //   opacity: 0,
-  // });
-  // tl.from('.promo__text', 0.4, {
-  //   y: -20,
-  //   opacity: 0,
-  // });
-
-  // tl.from('.promo__preview', 1, {
-  //   y: -20,
-  //   opacity: 0,
-  // });
+  tl.from(
+    ['.hero__offer', '.promo__text', '.promo__title', '.promo__btn'],
+    0.4,
+    {
+      y: -20,
+      opacity: 0,
+    }
+  )
+    .from(['.hero__preview', '.promo__preview'], 0.4, {
+      y: -20,
+      opacity: 0,
+    })
+    .from('.hero__download', 0.2, {
+      y: -20,
+      opacity: 0,
+    })
+    .to('.hero__download', 0.2, {
+      y: 0,
+      opacity: 1,
+    })
+    .to('.promo__btn', 0.2, {
+      y: 0,
+      opacity: 1,
+    });
 
   function showProjects() {}
   showProjects();
 
-  // gsap.to('.projects', 1, {
-  //   opacity: 0,
-  //   delay: 0.3,
-  //   scale: 1,
-  //   // y: -100,
-  //   stagger: {
-  //     amount: 8,
-  //   },
-  //   ease: 'elastic.out(.5,1)',
-  //   scrollTrigger: {
-  //     trigger: '.projects-card',
-  //     scrub: true,
-  //     start: 'top top',
-  //     end: '+-100%',
-  //   },
-  // });
-
-    // * ===== Mask input
-    $('input[type="tel"]').mask('+7 (999) 999-99-99');
+  // * ===== Mask input
+  $('input[type="tel"]').mask('+7 (999) 999-99-99');
 
   //   // * ===== Nice Select
   //   // $('select').niceSelect();
+
+  function multiStepForm() {
+    const btnNext = document.querySelector('.form-order__next');
+    const btnSubmit = document.querySelector('.btn-submit');
+    const content = document.querySelectorAll('.form-order__inner');
+    const inputs = document.querySelectorAll('.form-order__inner input');
+    let count = 0;
+
+    if (btnNext) {
+      btnNext.addEventListener('click', (e) => {
+        count++;
+        content[count].previousElementSibling.classList.remove('active');
+        content[count].classList.add('active');
+
+        if (count === content.length - 1) {
+          btnNext.style.display = 'none';
+          btnSubmit.style.display = 'block';
+        }
+      });
+    }
+  }
+  multiStepForm();
 
   // * ===== Slider
   (function slider() {
@@ -350,22 +225,6 @@ window.addEventListener('DOMContentLoaded', () => {
       },
     });
   })();
-
-  //   // * ===== Slider
-  //   (function slider() {
-  //     const sliderEl = document.querySelector('.price-list-top__slider');
-  //     new Swiper(sliderEl, {
-  //       slidesPerView: 'auto',
-  //       centeredSlides: true,
-  //       slideToClickedSlide: true,
-  //       initialSlide: 4,
-  //       spaceBetween: 20,
-  //       navigation: {
-  //         nextEl: '.price-list-top__slider .swiper-button-next',
-  //         prevEl: '.price-list-top__slider .swiper-button-prev',
-  //       },
-  //     });
-  //   })();
 
   // * ===== Accordion
   const toggleAccordion = (accordionControl, accordionContent, accordion) => {
@@ -471,97 +330,4 @@ window.addEventListener('DOMContentLoaded', () => {
   //     }
   //     bindModal('.online-booking-btn', '.popup--online-booking', '.popup__close');
   //   })();
-
-  //   // * ===== Toggle Tabs
-  //   function someTabs(headerSelector, tabSelector, contentSelector, activeClass) {
-  //     const header = document.querySelectorAll(headerSelector);
-  //     const tab = document.querySelectorAll(tabSelector);
-  //     const content = document.querySelectorAll(contentSelector);
-
-  //     header.forEach((el) => {
-  //       if (el) {
-  //         hideTabContent();
-  //         showTabContent();
-  //         function hideTabContent() {
-  //           content.forEach((item) => {
-  //             item.classList.remove('active');
-  //           });
-  //           tab.forEach((item) => {
-  //             item.classList.remove(activeClass);
-  //           });
-  //         }
-  //         function showTabContent(i = 0) {
-  //           content[i].classList.add('active');
-  //           tab[i].classList.add(activeClass);
-  //         }
-  //         header.forEach((item) => {
-  //           if (item) {
-  //             item.addEventListener('click', (e) => {
-  //               const target = e.target;
-  //               if (target.classList.contains(tabSelector.replace(/\./, ''))) {
-  //                 tab.forEach((item, i) => {
-  //                   if (target == item || target.parentNode == item) {
-  //                     hideTabContent();
-  //                     showTabContent(i);
-  //                   }
-  //                 });
-  //               }
-  //             });
-  //           }
-  //         });
-  //       }
-  //     });
-  //   }
-  //   someTabs('.contacts', '.contacts-top__item', '.contacts__content', 'active');
-
-  //   function toggleTabs(
-  //     headerSelector,
-  //     tabSelector,
-  //     contentSelector,
-  //     activeClass
-  //   ) {
-  //     const header = document.querySelectorAll(headerSelector);
-  //     const tab = document.querySelectorAll(tabSelector);
-  //     const content = document.querySelectorAll(contentSelector);
-
-  //     header.forEach((el) => {
-  //       if (el) {
-  //         hideTabContent();
-  //         showTabContent();
-  //         function hideTabContent() {
-  //           content.forEach((item) => {
-  //             item.classList.remove('active');
-  //           });
-  //           tab.forEach((item) => {
-  //             item.classList.remove(activeClass);
-  //           });
-  //         }
-  //         function showTabContent(i = 4) {
-  //           content[i].classList.add('active');
-  //           tab[i].classList.add(activeClass);
-  //         }
-  //         header.forEach((item) => {
-  //           if (item) {
-  //             item.addEventListener('click', (e) => {
-  //               const target = e.target;
-  //               if (target.classList.contains(tabSelector.replace(/\./, ''))) {
-  //                 tab.forEach((item, i) => {
-  //                   if (target == item || target.parentNode == item) {
-  //                     hideTabContent();
-  //                     showTabContent(i);
-  //                   }
-  //                 });
-  //               }
-  //             });
-  //           }
-  //         });
-  //       }
-  //     });
-  //   }
-  //   toggleTabs(
-  //     '.price-list',
-  //     '.price-list-top__btn',
-  //     '.price-list__content',
-  //     'active'
-  //   );
 });
