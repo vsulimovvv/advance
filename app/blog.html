@@ -28,8 +28,14 @@
   href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css"
 />
 
-<!--  -->
+<!-- AOS  -->
 <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+<!-- Nice Select -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.min.css"
+/>
 
 <!-- Custom Link -->
 <link rel="stylesheet" href="css/style.css" />
@@ -134,7 +140,32 @@
         <a class="mobile-menu__link" href="#"><span>Проекты</span></a>
       </li>
       <li class="mobile-menu__item">
-        <a class="mobile-menu__link" href="#"><span>Услуги</span></a>
+        <div class="mobile-menu-box accordion">
+          <button class="mobile-menu-box__name accordion-control" type="button">
+            Услуги
+          </button>
+
+          <div class="mobile-menu-box__content accordion-content">
+            <ul class="mobile-menu-box__list">
+              <li class="mobile-menu-box__item">
+                <a class="mobile-menu-box__link" href="#">Разработка сайтов</a>
+              </li>
+              <li class="mobile-menu-box__item">
+                <a class="mobile-menu-box__link" href="#">
+                  Разработка приложений
+                </a>
+              </li>
+              <li class="mobile-menu-box__item">
+                <a class="mobile-menu-box__link" href="#">SEO - продвижение</a>
+              </li>
+              <li class="mobile-menu-box__item">
+                <a class="mobile-menu-box__link" href="#">
+                  Контекстная реклама
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
       </li>
       <li class="mobile-menu__item">
         <a class="mobile-menu__link" href="#"><span>О нас</span></a>
@@ -203,6 +234,39 @@
           </li>
           <li class="menu__item">
             <a class="menu__link" href="#">Услуги</a>
+
+            <div class="dropmenu">
+              <div class="dropmenu__inner">
+                <picture>
+                  <source srcset="img/dropdown-img.webp" type="image/webp" />
+                  <img
+                    class="dropmenu__img"
+                    src="img/dropdown-img.jpg"
+                    alt="img"
+                  />
+                </picture>
+                <ul class="dropmenu__list">
+                  <li class="dropmenu__item">
+                    <a class="dropmenu__link" href="#">
+                      <span class="dropmenu__link-count">01</span>Разработка
+                      сайтов
+                    </a>
+                  </li>
+                  <li class="dropmenu__item">
+                    <a class="dropmenu__link" href="#">
+                      <span class="dropmenu__link-count">02</span>Разработка
+                      приложений
+                    </a>
+                  </li>
+                  <li class="dropmenu__item">
+                    <a class="dropmenu__link" href="#">
+                      <span class="dropmenu__link-count">03</span>SEO -
+                      продвижение
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </li>
           <li class="menu__item">
             <a class="menu__link" href="#">О нас</a>
@@ -614,9 +678,8 @@
 <!--  -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollTrigger.min.js"></script>
 
-<!--  -->
-<script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.min.js"></script>
-
+<!-- Nice Select -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/js/jquery.nice-select.min.js"></script>
 <!--  -->
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 

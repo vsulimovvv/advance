@@ -20,7 +20,7 @@ function headerPromoHeroAnim() {
       '.menu__item',
       1,
       {
-        delay: 0.2,
+        delay: 0.5,
         opacity: 0,
         y: 50,
         scale: 1.5,
@@ -37,38 +37,55 @@ function headerPromoHeroAnim() {
     TweenMax.from(['.hero__text', '.promo__text'], 1, {
       delay: 0.4,
       opacity: 0,
-      x: 80,
+      x: -80,
       ease: Expo.easeInOut,
     });
     TweenMax.from('.header__link', 1, {
-      delay: 0.4,
+      delay: 0.3,
       opacity: 0,
       y: -40,
       ease: Expo.easeInOut,
     });
     TweenMax.from('.header-contacts', 1, { delay: 0.4, y: -20, opacity: 0 });
-    TweenMax.from('.hero__download', 0.7, {
+    TweenMax.from('.hero__download', 1, {
       dealy: 0.4,
       x: '500%',
       opacity: 0,
-      ease: Expo.linear,
+      ease: Expo.easeInOut,
     });
-    TweenMax.to('.hero__download', 1, { x: '0', opacity: 1 });
+    TweenMax.from('.promo__btn', 1, {
+      dealy: 0.4,
+      x: '-500%',
+      opacity: 0,
+      ease: Expo.easeInOut,
+    });
   } else {
     return;
   }
-
-  TweenMax.from('.promo__preview', 3, {
-    y: 5,
-    repeat: -1,
-    yoyo: true,
-    ease: 'power1.inOut',
-    duration: 1,
-  });
 }
 headerPromoHeroAnim();
 
 window.addEventListener('DOMContentLoaded', () => {
+  (function loadForm() {
+    let inputs = document.querySelectorAll('.input-file-upload');
+    Array.prototype.forEach.call(inputs, function (input) {
+      let label = input.previousElementSibling,
+        labelVal = label.querySelector('.custom-file-upload span').innerText;
+
+      input.addEventListener('change', function (e) {
+        let countFiles = '';
+        if (this.files && this.files.length >= 1)
+          countFiles = this.files.length;
+
+        if (countFiles)
+          label.querySelector('.custom-file-upload span').innerText =
+            'Выбрано файлов: ' + countFiles;
+        else
+          label.querySelector('.custom-file-upload span').innerText = labelVal;
+      });
+    });
+  })();
+
   const tilt = $('.js-tilt').tilt();
 
   AOS.init();
@@ -200,11 +217,28 @@ window.addEventListener('DOMContentLoaded', () => {
   function showProjects() {}
   showProjects();
 
+  function textareaPlaceholder() {
+    const textarea = document.querySelectorAll('textarea');
+    textarea.forEach((el) => {
+      el.addEventListener('input', (e) => {
+        console.log(e.target.value);
+        if (e.target.value) {
+          e.target.nextElementSibling.style.display = 'none';
+        }
+
+        if (!e.target.value) {
+          e.target.nextElementSibling.style.display = 'block';
+        }
+      });
+    });
+  }
+  textareaPlaceholder();
+
   // * ===== Mask input
   $('input[type="tel"]').mask('+7 (999) 999-99-99');
 
-  //   // * ===== Nice Select
-  //   // $('select').niceSelect();
+  // * ===== Nice Select
+  $('select').niceSelect();
 
   function multiStepForm() {
     const btnNext = document.querySelector('.form-order__next');

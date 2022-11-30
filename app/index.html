@@ -28,8 +28,14 @@
   href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css"
 />
 
-<!--  -->
+<!-- AOS  -->
 <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+<!-- Nice Select -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.min.css"
+/>
 
 <!-- Custom Link -->
 <link rel="stylesheet" href="css/style.css" />
@@ -133,16 +139,42 @@
       <li class="mobile-menu__item">
         <a class="mobile-menu__link" href="#"><span>Проекты</span></a>
       </li>
+      <li class="mobile-menu__item"></li>
       <li class="mobile-menu__item">
-        <a class="mobile-menu__link" href="#"><span>Услуги</span></a>
+        <div class="mobile-menu-box accordion">
+          <button class="mobile-menu-box__name accordion-control" type="button">
+            Услуги
+          </button>
+
+          <div class="mobile-menu-box__content accordion-content">
+            <ul class="mobile-menu-box__list">
+              <li class="mobile-menu-box__item">
+                <a class="mobile-menu-box__link" href="#">Разработка сайтов</a>
+              </li>
+              <li class="mobile-menu-box__item">
+                <a class="mobile-menu-box__link" href="#">
+                  Разработка приложений
+                </a>
+              </li>
+              <li class="mobile-menu-box__item">
+                <a class="mobile-menu-box__link" href="#">SEO - продвижение</a>
+              </li>
+              <li class="mobile-menu-box__item">
+                <a class="mobile-menu-box__link" href="#">
+                  Контекстная реклама
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
       </li>
       <li class="mobile-menu__item">
         <a class="mobile-menu__link" href="#"><span>О нас</span></a>
       </li>
       <li class="mobile-menu__item">
-        <a class="mobile-menu__link" href="#"
-          ><span> Партнерская программа</span></a
-        >
+        <a class="mobile-menu__link" href="#">
+          <span> Партнерская программа</span>
+        </a>
       </li>
       <li class="mobile-menu__item">
         <a class="mobile-menu__link" href="#"><span>Блог</span></a>
@@ -179,9 +211,6 @@
       <a class="header__logo logo" href="#">
         <img src="img/logo.png" alt="logo" />
       </a>
-      <!--  data-aos="fade-down"
-        data-aos-duration="700"
-        data-aos-delay="300" -->
       <a class="header__link" href="tel:+79632975336">+7 (963) 297 53 36</a>
       <div class="header-contacts">
         <a
@@ -189,9 +218,6 @@
           href="#"
           target="_blank"
         >
-          <!--    data-aos="zoom-in"
-          data-aos-duration="700"
-          data-aos-delay="300" -->
           WhatsApp
         </a>
         <a
@@ -199,42 +225,57 @@
           href="#"
           target="_blank"
         >
-          <!--       data-aos="zoom-in"
-          data-aos-duration="700"
-          data-aos-delay="400" -->
           Telegram
         </a>
       </div>
       <nav class="menu">
         <ul class="menu__list">
           <li class="menu__item">
-            <!--  data-aos="fade-down"
-            data-aos-duration="1000"
-            data-aos-delay="100" -->
             <a class="menu__link" href="#">Проекты</a>
           </li>
           <li class="menu__item">
-            <!-- data-aos="fade-down"
-            data-aos-duration="1000"
-            data-aos-delay="200" -->
             <a class="menu__link" href="#">Услуги</a>
+
+            <div class="dropmenu">
+              <div class="dropmenu__inner">
+                <picture>
+                  <source srcset="img/dropdown-img.webp" type="image/webp" />
+                  <img
+                    class="dropmenu__img"
+                    src="img/dropdown-img.jpg"
+                    alt="img"
+                  />
+                </picture>
+                <ul class="dropmenu__list">
+                  <li class="dropmenu__item">
+                    <a class="dropmenu__link" href="#">
+                      <span class="dropmenu__link-count">01</span>Разработка
+                      сайтов
+                    </a>
+                  </li>
+                  <li class="dropmenu__item">
+                    <a class="dropmenu__link" href="#">
+                      <span class="dropmenu__link-count">02</span>Разработка
+                      приложений
+                    </a>
+                  </li>
+                  <li class="dropmenu__item">
+                    <a class="dropmenu__link" href="#">
+                      <span class="dropmenu__link-count">03</span>SEO -
+                      продвижение
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </li>
           <li class="menu__item">
-            <!--       data-aos="fade-down"
-            data-aos-duration="1000"
-            data-aos-delay="300" -->
             <a class="menu__link" href="#">О нас</a>
           </li>
           <li class="menu__item">
-            <!--   data-aos="fade-down"
-            data-aos-duration="1000"
-            data-aos-delay="400" -->
             <a class="menu__link" href="#">Блог</a>
           </li>
           <li class="menu__item">
-            <!-- data-aos="fade-down"
-            data-aos-duration="1000"
-            data-aos-delay="500" -->
             <a class="menu__link" href="#">Контакты</a>
           </li>
         </ul>
@@ -761,17 +802,18 @@
           >
             <div class="form-order__group">
               <p class="form-order__label">шаг 3 → <span>ВЫБРАТЬ БРИФ</span></p>
-              <input
-                class="form-order__input"
-                type="text"
-                placeholder="Выберите бриф из списка"
-                required
-              />
+              <select class="select">
+                <option value="1">Выберите бриф из списка</option>
+                <option value="2">Бриф 1</option>
+                <option value="3">Бриф 2</option>
+                <option value="4">Бриф 3</option>
+              </select>
+
               <span class="form-order__line"></span>
             </div>
           </div>
           <button
-            class="form-order__next magnetic-btn"
+            class="form-order__next"
             type="submit"
             data-aos="fade-up"
             data-aos-duration="1000"
@@ -779,7 +821,7 @@
             Далее
           </button>
         </div>
-        <button class="form-order__btn btn-submit magnetic-btn" type="submit">
+        <button class="form-order__btn btn-submit" type="submit">
           Отправить заявку
         </button>
       </form>
@@ -984,9 +1026,8 @@
 <!--  -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollTrigger.min.js"></script>
 
-<!--  -->
-<script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.min.js"></script>
-
+<!-- Nice Select -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/js/jquery.nice-select.min.js"></script>
 <!--  -->
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
