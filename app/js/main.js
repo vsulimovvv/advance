@@ -166,7 +166,7 @@ window.addEventListener('DOMContentLoaded', () => {
       opacity: 0,
     }
   )
-    .from(['.hero__preview', '.promo__preview'], 0.4, {
+  .from(['.hero__preview', '.promo__preview'], 0.4, {
       y: -20,
       opacity: 0,
     })

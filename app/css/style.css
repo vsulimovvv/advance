@@ -1827,11 +1827,13 @@ body.no-scroll {
 }
 @media (max-width: 991.98px) {
   .hero__preview {
-    right: initial;
+    right: 0;
     left: 50%;
     -webkit-transform: translateX(-50%);
         -ms-transform: translateX(-50%);
             transform: translateX(-50%);
+    -webkit-animation: none;
+            animation: none;
     top: 30px;
   }
 }
@@ -2113,6 +2115,23 @@ body.no-scroll {
   left: -19px;
 }
 
+@-webkit-keyframes bouncing-2 {
+  from {
+    top: 10px;
+  }
+  to {
+    bottom: -10px;
+  }
+}
+
+@keyframes bouncing-2 {
+  from {
+    top: 10px;
+  }
+  to {
+    bottom: -10px;
+  }
+}
 .contacts {
   padding-top: 100px;
 }
