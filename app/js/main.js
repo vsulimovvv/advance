@@ -1,3 +1,73 @@
+// ! Header and Promo
+function headerPromoHeroAnim() {
+  if (window.innerWidth > 990) {
+    TweenMax.from('.header__logo', 0.6, {
+      delay: 0.5,
+      opacity: 0,
+    });
+    TweenMax.to('.header__logo', 0.6, {
+      delay: 0.5,
+      opacity: 1,
+    });
+
+    TweenMax.from(['.hero__preview', '.promo__preview'], 1.5, {
+      delay: 1,
+      opacity: 0,
+      y: '-10%',
+      ease: Expo.easeInOut,
+    });
+    TweenMax.staggerFrom(
+      '.menu__item',
+      1,
+      {
+        delay: 0.2,
+        opacity: 0,
+        y: 50,
+        scale: 1.5,
+        ease: Expo.easeInOut,
+      },
+      0.2
+    );
+    TweenMax.from(['.hero__title', '.promo__title'], 1, {
+      opacity: 0,
+      delay: 0.4,
+      x: -80,
+      ease: Expo.easeInOut,
+    });
+    TweenMax.from(['.hero__text', '.promo__text'], 1, {
+      delay: 0.4,
+      opacity: 0,
+      x: 80,
+      ease: Expo.easeInOut,
+    });
+    TweenMax.from('.header__link', 1, {
+      delay: 0.4,
+      opacity: 0,
+      y: -40,
+      ease: Expo.easeInOut,
+    });
+    TweenMax.from('.header-contacts', 1, { delay: 0.4, y: -20, opacity: 0 });
+    TweenMax.from('.hero__download', 0.7, {
+      dealy: 0.4,
+      x: '500%',
+      opacity: 0,
+      ease: Expo.linear,
+    });
+    TweenMax.to('.hero__download', 1, { x: '0', opacity: 1 });
+  } else {
+    return;
+  }
+
+  TweenMax.from('.promo__preview', 3, {
+    y: 5,
+    repeat: -1,
+    yoyo: true,
+    ease: 'power1.inOut',
+    duration: 1,
+  });
+}
+headerPromoHeroAnim();
+
 window.addEventListener('DOMContentLoaded', () => {
   const tilt = $('.js-tilt').tilt();
 
@@ -98,90 +168,34 @@ window.addEventListener('DOMContentLoaded', () => {
   });
   // !
 
-  function parallaxPromo() {
-    const promo = document.querySelectorAll('.promo');
+  // function parallaxPromo() {
+  //   const promo = document.querySelectorAll('.promo');
 
-    promo.forEach((el) => {
-      if (el) {
-        parallaxMouse({
-          elements: '.promo__preview',
-          moveFactor: 5,
-          wrap: '.promo',
-          perspective: '100px',
-        });
-      }
-    });
+  //   promo.forEach((el) => {
+  //     if (el) {
+  //       parallaxMouse({
+  //         elements: '.promo__preview',
+  //         moveFactor: 5,
+  //         wrap: '.promo',
+  //         perspective: '100px',
+  //       });
+  //     }
+  //   });
 
-    const launch = document.querySelectorAll('.launch');
+  //   const launch = document.querySelectorAll('.launch');
 
-    launch.forEach((el) => {
-      if (el) {
-        parallaxMouse({
-          elements: '.launch__img',
-          moveFactor: 15,
-          wrap: '.launch',
-          perspective: '100px',
-        });
-      }
-    });
-  }
-  parallaxPromo();
-
-  const tl = new TimelineMax();
-  // const mySplitText = new SplitText('.promo__title', {
-  //   type: 'chars',
-  // });
-  // const chars = mySplitText.chars;
-  // tl.staggerFrom(
-  //   chars,
-  //   0.45,
-  //   {
-  //     opacity: 0,
-  //   },
-  //   0.1
-  // );
-  // ! Header and Promo
-  tl.from('.header__logo', 0.7, {
-    y: -20,
-    opacity: 0,
-  });
-  tl.from('.header__link', 0.4, {
-    y: -20,
-    opacity: 0,
-  });
-  tl.from('.header-contacts', 0.4, {
-    y: -20,
-    opacity: 0,
-  });
-  tl.from('nav', 0.4, {
-    y: -20,
-    opacity: 0,
-  });
-
-  tl.from(
-    ['.hero__offer', '.promo__text', '.promo__title', '.promo__btn'],
-    0.4,
-    {
-      y: -20,
-      opacity: 0,
-    }
-  )
-  .from(['.hero__preview', '.promo__preview'], 0.4, {
-      y: -20,
-      opacity: 0,
-    })
-    .from('.hero__download', 0.2, {
-      y: -20,
-      opacity: 0,
-    })
-    .to('.hero__download', 0.2, {
-      y: 0,
-      opacity: 1,
-    })
-    .to('.promo__btn', 0.2, {
-      y: 0,
-      opacity: 1,
-    });
+  //   launch.forEach((el) => {
+  //     if (el) {
+  //       parallaxMouse({
+  //         elements: '.launch__img',
+  //         moveFactor: 15,
+  //         wrap: '.launch',
+  //         perspective: '100px',
+  //       });
+  //     }
+  //   });
+  // }
+  // parallaxPromo();
 
   function showProjects() {}
   showProjects();
