@@ -1,77 +1,11 @@
-// ! Header and Promo
-// function headerPromoHeroAnim() {
-//   if (window.innerWidth > 990) {
-//     TweenMax.from('.header__logo', 0.6, {
-//       delay: 0.5,
-//       opacity: 0,
-//     });
-//     TweenMax.to('.header__logo', 0.6, {
-//       delay: 0.5,
-//       opacity: 1,
-//     });
-
-//     TweenMax.from(['.hero__preview', '.promo__preview'], 1.5, {
-//       delay: 1,
-//       opacity: 0,
-//       y: '-10%',
-//       ease: Expo.easeInOut,
-//     });
-//     TweenMax.staggerFrom(
-//       '.menu__item',
-//       1,
-//       {
-//         delay: 0.5,
-//         opacity: 0,
-//         y: 50,
-//         scale: 1.5,
-//         ease: Expo.easeInOut,
-//       },
-//       0.2
-//     );
-//     TweenMax.from(['.hero__title', '.promo__title'], 1, {
-//       opacity: 0,
-//       delay: 0.4,
-//       x: -80,
-//       ease: Expo.easeInOut,
-//     });
-//     TweenMax.from(['.hero__text', '.promo__text'], 1, {
-//       delay: 0.4,
-//       opacity: 0,
-//       x: -80,
-//       ease: Expo.easeInOut,
-//     });
-//     TweenMax.from('.header__link', 1, {
-//       delay: 0.3,
-//       opacity: 0,
-//       y: -40,
-//       ease: Expo.easeInOut,
-//     });
-//     TweenMax.from('.header-contacts', 1, { delay: 0.4, y: -20, opacity: 0 });
-//     TweenMax.from('.hero__download', 1, {
-//       dealy: 0.4,
-//       x: '500%',
-//       opacity: 0,
-//       ease: Expo.easeInOut,
-//     });
-//     TweenMax.from('.promo__btn', 1, {
-//       dealy: 0.4,
-//       x: '-500%',
-//       opacity: 0,
-//       ease: Expo.easeInOut,
-//     });
-//   } else {
-//     return;
-//   }
-// }
-// headerPromoHeroAnim();
-// window.addEventListener('load ', );
-
 window.addEventListener('DOMContentLoaded', () => {
   (function loadForm() {
-    let inputs = document.querySelectorAll('.input-file-upload');
+    let inputs = document.querySelectorAll('.input-file__input');
     Array.prototype.forEach.call(inputs, function (input) {
       let label = input.previousElementSibling,
-        labelVal = label.querySelector('.custom-file-upload span').innerText;
+        labelVal = label.querySelector(
+          '.input-file .input-file__count'
+        ).innerText;
 
       input.addEventListener('change', function (e) {
         let countFiles = '';
@@ -79,10 +13,11 @@ window.addEventListener('DOMContentLoaded', () => {
           countFiles = this.files.length;
 
         if (countFiles)
-          label.querySelector('.custom-file-upload span').innerText =
+          label.querySelector('.input-file .input-file__count').innerText =
             'Выбрано файлов: ' + countFiles;
         else
-          label.querySelector('.custom-file-upload span').innerText = labelVal;
+          label.querySelector('.input-file .input-file__count').innerText =
+            labelVal;
       });
     });
   })();
@@ -344,6 +279,37 @@ window.addEventListener('DOMContentLoaded', () => {
       overlay.classList.remove('active');
       body.classList.remove('no-scroll');
     });
+  })();
+
+  // * ===== Show Contacts Form
+  (function showMenu() {
+    const menuBtn = document.querySelectorAll('.btn-show-contacts');
+    const menu = document.querySelector('.contacts-right');
+    const menuCloseBtn = document.querySelector('.contacts-right__close');
+    const body = document.querySelector('body');
+    const overlay = document.querySelector('.overlay');
+
+    if (menu) {
+      menuBtn.forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+          menu.classList.toggle('active');
+          overlay.classList.toggle('active');
+          body.classList.toggle('no-scroll');
+        });
+      });
+
+      overlay.addEventListener('click', (e) => {
+        menu.classList.remove('active');
+        overlay.classList.remove('active');
+        body.classList.remove('no-scroll');
+      });
+
+      menuCloseBtn.addEventListener('click', (e) => {
+        menu.classList.remove('active');
+        overlay.classList.remove('active');
+        body.classList.remove('no-scroll');
+      });
+    }
   })();
 
   //   // * ===== Modal
