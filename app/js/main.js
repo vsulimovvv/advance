@@ -1,4 +1,334 @@
 window.addEventListener('DOMContentLoaded', () => {
+
+
+  (function dotsAnim() {
+    const canvas = document.querySelector('canvas');
+    canvas.width = window.innerWidth - 100;
+    canvas.height = window.innerHeight - 100;
+    const c = canvas.getContext('2d');
+
+    let mouse = {
+      x: undefined,
+      y: undefined,
+    };
+
+    let maxRadius = 5;
+    window.addEventListener('mousemove', function (e) {
+      mouse.x = e.x;
+      mouse.y = e.y;
+    });
+    window,
+      addEventListener('resize', function (e) {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      });
+    function Circle(x, y, incrementX, incrementY, radius) {
+      this.x = x;
+      this.y = y;
+      this.incrementX = incrementX;
+      this.incrementY = incrementY;
+      this.radius = Math.ceil(Math.random() * 1) + 1;
+      this.minRadius = Math.ceil(Math.random() * 1) + 1;
+
+      this.draw = function () {
+        c.beginPath();
+        c.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+        let grd = c.createRadialGradient(
+          this.x,
+          this.y,
+          this.radius - 1,
+          this.x - 1,
+          this.y - 1,
+          this.radius / 5
+        );
+
+        grd.addColorStop(0, `#57383b`);
+        c.fillStyle = grd;
+        c.fill();
+      };
+
+      this.update = function () {
+        this.x += this.incrementX;
+        this.y += this.incrementY;
+        if (this.x > innerWidth - this.radius) {
+          this.incrementX = -Math.random() * 5;
+        }
+        if (this.x < this.radius) {
+          this.incrementX = Math.random() * 5;
+        }
+        if (this.y > innerHeight - this.radius) {
+          this.incrementY = -Math.random() * 5;
+        }
+        if (this.y < this.radius) {
+          this.incrementY = Math.random() * 5;
+        }
+        if (
+          mouse.x - this.x < 50 &&
+          mouse.x - this.x > -50 &&
+          mouse.y - this.y < 50 &&
+          mouse.y - this.y > -50
+        ) {
+          if (this.radius < maxRadius) {
+            this.radius++;
+          }
+        } else if (this.radius > this.minRadius) {
+          this.radius--;
+        }
+        this.draw();
+      };
+    }
+    //  + 1000
+    let num = Math.ceil(Math.random() * 50) + 1500;
+    let circleArr = [];
+    console.log(circleArr);
+    function init() {
+      circleArr = [];
+      for (let i = 1; i < num; i++) {
+        let x = Math.floor(Math.random() * window.innerWidth);
+        let y = Math.floor(Math.random() * window.innerHeight);
+        let incrementX = (Math.random() - 0.5) * 5;
+        let incrementY = (Math.random() - 0.5) * 5;
+        let radius = Math.ceil(Math.random() * 5) + 4;
+        circleArr.push(new Circle(x, y, incrementX, incrementY, radius));
+      }
+    }
+    init();
+    function animate() {
+      requestAnimationFrame(animate);
+      c.clearRect(0, 0, innerWidth, innerHeight);
+      for (let i = 0; i < circleArr.length; i++) {
+        circleArr[i].update();
+      }
+    }
+    animate();
+  })();
+
+  // (function dotsAnim() {
+  //   var dotMargin = 25;
+  //   var numRows = 10;
+  //   var numCols = 25;
+
+  //   var colors = ['#57383b'];
+
+  //   var directions = ['+', '-'];
+  //   var speeds = [0.2, 0.5, 1, 1.4, 2, 2.4, 3];
+
+  //   var canvas = $('canvas.hero-dots');
+  //   var context = canvas[0].getContext('2d');
+  //   var canvasWidth = canvas.width();
+  //   var canvasHeight = canvas.height(); // this one is new
+  //   canvas.attr({ height: canvasHeight, width: canvasWidth });
+
+  //   var dotWidth = (canvasWidth - 2 * dotMargin) / numCols - dotMargin;
+  //   var dotHeight = (canvasHeight - 2 * dotMargin) / numRows - dotMargin;
+
+  //   if (dotWidth > dotHeight) {
+  //     var dotDiameter = dotHeight;
+  //     var xMargin =
+  //       (canvasWidth - (2 * dotMargin + numCols * dotDiameter)) / numCols;
+  //     var yMargin = dotMargin;
+  //   } else {
+  //     var dotDiameter = dotWidth;
+  //     var xMargin = dotMargin;
+  //     var yMargin =
+  //       (canvasHeight - (2 * dotMargin + numRows * dotDiameter)) / numRows;
+  //   }
+
+  //   var dots = [];
+
+  //   var dotRadius = dotDiameter * 0.05;
+
+  //   for (var i = 0; i < numRows; i++) {
+  //     for (var j = 0; j < numCols; j++) {
+  //       var x =
+  //         j * (dotDiameter + xMargin) + dotMargin + xMargin / 2 + dotRadius;
+  //       var y =
+  //         i * (dotDiameter + yMargin) + dotMargin + yMargin / 2 + dotRadius;
+
+  //       var color = colors[Math.floor(Math.random() * colors.length)];
+  //       var xMove = directions[Math.floor(Math.random() * directions.length)];
+  //       var yMove = directions[Math.floor(Math.random() * directions.length)];
+  //       var speed = speeds[Math.floor(Math.random() * speeds.length)];
+
+  //       var dot = {
+  //         x: x,
+  //         y: y,
+  //         radius: dotRadius,
+  //         xMove: xMove,
+  //         yMove: yMove,
+  //         color: color,
+  //         speed: speed,
+  //       };
+  //       dots.push(dot);
+  //       drawDot(dot);
+  //     }
+  //   }
+
+  //   for (i = 0; i < dots.length; i++) {
+  //     drawDot(dots[i]);
+  //   }
+
+  //   window.requestAnimationFrame(moveDot);
+
+  //   function moveDot() {
+  //     context.clearRect(0, 0, canvasWidth, canvasHeight);
+
+  //     for (i = 0; i < dots.length; i++) {
+  //       if (dots[i].xMove == '+') {
+  //         dots[i].x += dots[i].speed;
+  //       } else {
+  //         dots[i].x -= dots[i].speed;
+  //       }
+  //       if (dots[i].yMove == '+') {
+  //         dots[i].y += dots[i].speed;
+  //       } else {
+  //         dots[i].y -= dots[i].speed;
+  //       }
+
+  //       drawDot(dots[i]);
+
+  //       if (dots[i].x + dots[i].radius >= canvasWidth + 100) {
+  //         dots[i].xMove = '-';
+  //       }
+  //       if (dots[i].x - dots[i].radius <= -100) {
+  //         dots[i].xMove = '+';
+  //       }
+  //       if (dots[i].y + dots[i].radius >= canvasHeight + 100) {
+  //         dots[i].yMove = '-';
+  //       }
+  //       if (dots[i].y - dots[i].radius <= -100) {
+  //         dots[i].yMove = '+';
+  //       }
+  //     }
+
+  //     window.requestAnimationFrame(moveDot);
+  //   }
+
+  //   function drawDot(dot) {
+  //     context.globalAlpha = 0.9;
+  //     context.beginPath();
+  //     context.arc(dot.x, dot.y, dot.radius, 0, 2 * Math.PI, false);
+  //     context.fillStyle = dot.color;
+  //     context.fill();
+  //   }
+  // })();
+
+  // (function dotsAnim() {
+  //   var dotMargin = 25;
+  //   var numRows = 20;
+  //   var numCols = 50;
+  //   // 10 - 20
+  //   // Set the colors you want to support in this array
+
+  //   var colors = ['#57383b'];
+
+  //   var directions = ['+', '-'];
+  //   var speeds = [0.2, 0.5, 1, 1.4, 2, 2.4, 3];
+
+  //   var canvas = $('canvas');
+  //   var context = canvas[0].getContext('2d');
+  //   var canvasWidth = canvas.width();
+  //   var canvasHeight = canvas.height(); // this one is new
+  //   canvas.attr({ height: canvasHeight, width: canvasWidth });
+
+  //   var dotWidth = (canvasWidth - 2 * dotMargin) / numCols - dotMargin;
+  //   var dotHeight = (canvasHeight - 2 * dotMargin) / numRows - dotMargin;
+
+  //   if (dotWidth > dotHeight) {
+  //     var dotDiameter = dotHeight;
+  //     var xMargin =
+  //       (canvasWidth - (2 * dotMargin + numCols * dotDiameter)) / numCols;
+  //     var yMargin = dotMargin;
+  //   } else {
+  //     var dotDiameter = dotWidth;
+  //     var xMargin = dotMargin;
+  //     var yMargin =
+  //       (canvasHeight - (2 * dotMargin + numRows * dotDiameter)) / numRows;
+  //   }
+
+  //   // Start with an empty array of dots.
+  //   var dots = [];
+
+  //   var dotRadius = dotDiameter * 0.05;
+
+  //   for (var i = 0; i < numRows; i++) {
+  //     for (var j = 0; j < numCols; j++) {
+  //       var x =
+  //         j * (dotDiameter + xMargin) + dotMargin + xMargin / 2 + dotRadius;
+  //       var y =
+  //         i * (dotDiameter + yMargin) + dotMargin + yMargin / 2 + dotRadius;
+  //       // Get random color, direction and speed.
+  //       var color = colors[Math.floor(Math.random() * colors.length)];
+  //       var xMove = directions[Math.floor(Math.random() * directions.length)];
+  //       var yMove = directions[Math.floor(Math.random() * directions.length)];
+  //       var speed = speeds[Math.floor(Math.random() * speeds.length)];
+  //       // Set the object.
+  //       var dot = {
+  //         x: x,
+  //         y: y,
+  //         radius: dotRadius,
+  //         xMove: xMove,
+  //         yMove: yMove,
+  //         color: color,
+  //         speed: speed,
+  //       };
+  //       // Save it to the dots array.
+  //       dots.push(dot);
+  //       drawDot(dot);
+  //     }
+  //   }
+
+  //   // Draw each dot in the dots array.
+  //   for (i = 0; i < dots.length; i++) {
+  //     drawDot(dots[i]);
+  //   }
+
+  //   window.requestAnimationFrame(moveDot);
+
+  //   function moveDot() {
+  //     context.clearRect(0, 0, canvasWidth, canvasHeight);
+
+  //     for (i = 0; i < dots.length; i++) {
+  //       if (dots[i].xMove == '+') {
+  //         dots[i].x += dots[i].speed;
+  //       } else {
+  //         dots[i].x -= dots[i].speed;
+  //       }
+  //       if (dots[i].yMove == '+') {
+  //         dots[i].y += dots[i].speed;
+  //       } else {
+  //         dots[i].y -= dots[i].speed;
+  //       }
+
+  //       drawDot(dots[i]);
+
+  //       if (dots[i].x + dots[i].radius >= canvasWidth + 100) {
+  //         dots[i].xMove = '-';
+  //       }
+  //       if (dots[i].x - dots[i].radius <= -100) {
+  //         dots[i].xMove = '+';
+  //       }
+  //       if (dots[i].y + dots[i].radius >= canvasHeight + 100) {
+  //         dots[i].yMove = '-';
+  //       }
+  //       if (dots[i].y - dots[i].radius <= -100) {
+  //         dots[i].yMove = '+';
+  //       }
+  //     }
+
+  //     window.requestAnimationFrame(moveDot);
+  //   }
+
+  //   function drawDot(dot) {
+  //     context.globalAlpha = 0.9;
+  //     context.beginPath();
+  //     // context.arc(dot.x, dot.y, dot.radius, 0, 2 * Math.PI, false);
+  //     context.arc(dot.x, dot.y, dot.radius, 0, 2 * Math.PI, false);
+  //     context.fillStyle = dot.color;
+  //     context.fill();
+  //   }
+  // })();
+
   (function loadForm() {
     let inputs = document.querySelectorAll('.input-file__input');
     Array.prototype.forEach.call(inputs, function (input) {

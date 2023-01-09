@@ -787,6 +787,14 @@ body.no-scroll {
             transform: translate(-50%, -50%) scale(1);
   }
 }
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
 @-webkit-keyframes opacity-visibility {
   0% {
     opacity: 0;
@@ -797,6 +805,7 @@ body.no-scroll {
     visibility: visible;
   }
 }
+
 @keyframes opacity-visibility {
   0% {
     opacity: 0;
@@ -1512,7 +1521,6 @@ body.no-scroll {
 .header {
   padding: 25px 0 25px;
   color: #333933;
-  position: sticky;
   top: 0;
   left: 0;
   width: 100%;
@@ -1523,6 +1531,8 @@ body.no-scroll {
   -webkit-transition: 200ms ease;
   -o-transition: 200ms ease;
   transition: 200ms ease;
+  position: absolute;
+  background-color: transparent;
 }
 .header__wrapper {
   display: -webkit-box;
@@ -1725,9 +1735,8 @@ body.no-scroll {
 }
 .hero__wrapper {
   padding-top: 50px;
-  padding-bottom: 50px;
+  padding-bottom: 20%;
   padding-right: 100px;
-  height: 670px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1735,6 +1744,12 @@ body.no-scroll {
   -webkit-box-align: end;
       -ms-flex-align: end;
           align-items: flex-end;
+  height: 100vh;
+}
+@media screen and (max-height: 900px) {
+  .hero__wrapper {
+    padding-bottom: 10%;
+  }
 }
 @media (max-width: 991.98px) {
   .hero__wrapper {
@@ -1743,14 +1758,6 @@ body.no-scroll {
     padding-top: 0;
     height: auto;
     padding-top: calc(420px + 80 * (100vw - 360px) / 631);
-  }
-}
-.hero__offer {
-  padding-bottom: 100px;
-}
-@media (max-width: 1300px) {
-  .hero__offer {
-    padding-bottom: calc(0px + 100 * (100vw - 991px) / 279);
   }
 }
 @media (max-width: 991.98px) {
@@ -1779,7 +1786,7 @@ body.no-scroll {
 }
 .hero__preview {
   position: absolute;
-  top: 5%;
+  bottom: 20%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1802,6 +1809,11 @@ body.no-scroll {
         280px + 305 *
           ((100vw - 360px) / 910)
       );
+  }
+}
+@media screen and (max-height: 900px) {
+  .hero__preview {
+    bottom: 10%;
   }
 }
 @media (max-width: 991.98px) {
@@ -2002,12 +2014,17 @@ body.no-scroll {
   padding-bottom: 15px;
   padding-top: 20px;
   border-bottom: 1px solid #4d4e59;
-  bottom: 150px;
+  bottom: 30%;
   right: 0;
   -webkit-transition: 300ms ease;
   -o-transition: 300ms ease;
   transition: 300ms ease;
   font-size: 17px;
+}
+@media screen and (max-height: 900px) {
+  .hero__download {
+    bottom: 20%;
+  }
 }
 .hero__download::before {
   position: absolute;
@@ -3194,6 +3211,7 @@ input[type=file] {
 .projects {
   padding-top: 60px;
   padding-bottom: 120px;
+  position: relative;
 }
 @media (max-width: 1270px) {
   .projects {
