@@ -1,12 +1,24 @@
 window.addEventListener('DOMContentLoaded', () => {
-  // (function changeCursor() {
-  //   const cursor = document.querySelector('.cursor');
+  (function parallaxAnim() {
 
-  //   const title = document.querySelector('.about-page__title');
-  //   title.addEventListener('mousemove', (e) => {
-  //     cursor.style.cssText = `left:${e.clientX}px; top:${e.clientY}px;`;
-  //   });
-  // })();
+
+    function parallaxIt(e, target, movement) {
+      var $this = $('.additionally');
+      var relX = e.pageX - $this.offset().left;
+      var relY = e.pageY - $this.offset().top;
+
+      TweenMax.to(target, 1, {
+        x: ((relX - $this.width() / 2) / $this.width()) * movement,
+        y: ((relY - $this.height() / 2) / $this.height()) * movement,
+      });
+    }
+
+    $('.additionally').mousemove(function (e) {
+      parallaxIt(e, '.logo-multi-1', -20);
+      parallaxIt(e, '.logo-multi-2', 10);
+      parallaxIt(e, '.logo-multi-3', 10);
+    });
+  })();
 
   (function dotsAnim() {
     const canvas = document.querySelector('canvas');
@@ -240,7 +252,9 @@ window.addEventListener('DOMContentLoaded', () => {
     const scene = document.querySelectorAll('.parallax-scene');
     scene.forEach((el) => {
       if (el) {
-        const parallaxInstance = new Parallax(el);
+        const parallaxInstance = new Parallax(el, {
+          // relativeInput: true,
+        });
       }
     });
   }
