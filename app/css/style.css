@@ -282,6 +282,10 @@ body.no-scroll {
           transition-delay: 550ms ease;
 }
 
+.main.mt {
+  margin-top: 85px;
+}
+
 .logo {
   display: block;
   width: 210px;
@@ -4700,6 +4704,47 @@ input[type=file] {
   background-size: contain;
   top: 0;
   left: -19px;
+}
+.promo--seo .promo__preview, .promo--sites .promo__preview, .promo--mobile .promo__preview {
+  width: 630px;
+  height: 560px;
+}
+.promo--seo .promo__preview .ellipse,
+.promo--seo .promo__preview .sphere,
+.promo--seo .promo__preview .lines, .promo--sites .promo__preview .ellipse,
+.promo--sites .promo__preview .sphere,
+.promo--sites .promo__preview .lines, .promo--mobile .promo__preview .ellipse,
+.promo--mobile .promo__preview .sphere,
+.promo--mobile .promo__preview .lines {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+}
+.promo--seo .promo__preview .ellipse img,
+.promo--seo .promo__preview .sphere img,
+.promo--seo .promo__preview .lines img, .promo--sites .promo__preview .ellipse img,
+.promo--sites .promo__preview .sphere img,
+.promo--sites .promo__preview .lines img, .promo--mobile .promo__preview .ellipse img,
+.promo--mobile .promo__preview .sphere img,
+.promo--mobile .promo__preview .lines img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.promo--seo .promo__preview .sphere, .promo--sites .promo__preview .sphere, .promo--mobile .promo__preview .sphere {
+  width: 500px;
+  height: 400px;
+  top: 50% !important;
+  left: 50% !important;
+  -webkit-transform: translate(-50%, -50%) !important;
+      -ms-transform: translate(-50%, -50%) !important;
+          transform: translate(-50%, -50%) !important;
 }
 .promo--partners {
   background-color: var(--color-dark);

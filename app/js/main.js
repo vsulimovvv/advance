@@ -236,34 +236,15 @@ window.addEventListener('DOMContentLoaded', () => {
   });
   // !
 
-  // function parallaxPromo() {
-  //   const promo = document.querySelectorAll('.promo');
-
-  //   promo.forEach((el) => {
-  //     if (el) {
-  //       parallaxMouse({
-  //         elements: '.promo__preview',
-  //         moveFactor: 5,
-  //         wrap: '.promo',
-  //         perspective: '100px',
-  //       });
-  //     }
-  //   });
-
-  //   const launch = document.querySelectorAll('.launch');
-
-  //   launch.forEach((el) => {
-  //     if (el) {
-  //       parallaxMouse({
-  //         elements: '.launch__img',
-  //         moveFactor: 15,
-  //         wrap: '.launch',
-  //         perspective: '100px',
-  //       });
-  //     }
-  //   });
-  // }
-  // parallaxPromo();
+  function parallaxPromo() {
+    const scene = document.querySelectorAll('.parallax-scene');
+    scene.forEach((el) => {
+      if (el) {
+        const parallaxInstance = new Parallax(el);
+      }
+    });
+  }
+  parallaxPromo();
 
   function showProjects() {}
   showProjects();
