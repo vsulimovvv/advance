@@ -1,7 +1,5 @@
 window.addEventListener('DOMContentLoaded', () => {
   (function parallaxAnim() {
-
-
     function parallaxIt(e, target, movement) {
       var $this = $('.additionally');
       var relX = e.pageX - $this.offset().left;
@@ -17,6 +15,81 @@ window.addEventListener('DOMContentLoaded', () => {
       parallaxIt(e, '.logo-multi-1', -20);
       parallaxIt(e, '.logo-multi-2', 10);
       parallaxIt(e, '.logo-multi-3', 10);
+    });
+  })();
+
+  (function parallaxAnim() {
+    function parallaxIt(e, target, movement) {
+      var $this = $('.about-page__top');
+      var relX = e.pageX - $this.offset().left;
+      var relY = e.pageY - $this.offset().top;
+
+      TweenMax.to(target, 1, {
+        x: ((relX - $this.width() / 2) / $this.width()) * movement,
+        y: ((relY - $this.height() / 2) / $this.height()) * movement,
+      });
+    }
+
+    $('.about-page__top').mousemove(function (e) {
+      parallaxIt(e, '.about-title__img--small', -20);
+      parallaxIt(e, '.about-title__img--big', 10);
+      parallaxIt(e, '.about-title', 10);
+    });
+  })();
+
+  (function parallaxAnim() {
+    function parallaxIt(e, target, movement) {
+      var $this = $('.promo__wrapper');
+      var relX = e.pageX - $this.offset().left;
+      var relY = e.pageY - $this.offset().top;
+
+      TweenMax.to(target, 1, {
+        x: ((relX - $this.width() / 2) / $this.width()) * movement,
+        y: ((relY - $this.height() / 2) / $this.height()) * movement,
+      });
+    }
+
+    $('.promo__wrapper').mousemove(function (e) {
+      parallaxIt(e, '.ellipse', 10);
+      parallaxIt(e, '.sphere', 10);
+      parallaxIt(e, '.lines', -10);
+    });
+  })();
+
+  (function parallaxAnim() {
+    function parallaxIt(e, target, movement) {
+      var $this = $('.about');
+      var relX = e.pageX - $this.offset().left;
+      var relY = e.pageY - $this.offset().top;
+
+      TweenMax.to(target, 1, {
+        x: ((relX - $this.width() / 2) / $this.width()) * movement,
+        y: ((relY - $this.height() / 2) / $this.height()) * movement,
+      });
+    }
+
+    $('.about').mousemove(function (e) {
+      parallaxIt(e, '.about__link--e-commerce', 60);
+      parallaxIt(e, '.about__link--b2b', -60);
+      parallaxIt(e, '.about__link--finance', 60);
+      parallaxIt(e, '.about__link--medicine', -60);
+    });
+  })();
+
+  (function parallaxAnim() {
+    function parallaxIt(e, target, movement) {
+      var $this = $('.scheme-chart');
+      var relX = e.pageX - $this.offset().left;
+      var relY = e.pageY - $this.offset().top;
+
+      TweenMax.to(target, 1, {
+        x: ((relX - $this.width() / 2) / $this.width()) * movement,
+        y: ((relY - $this.height() / 2) / $this.height()) * movement,
+      });
+    }
+
+    $('.scheme-chart').mousemove(function (e) {
+      parallaxIt(e, '.circles', 50);
     });
   })();
 
@@ -248,17 +321,25 @@ window.addEventListener('DOMContentLoaded', () => {
   });
   // !
 
-  function parallaxPromo() {
-    const scene = document.querySelectorAll('.parallax-scene');
-    scene.forEach((el) => {
-      if (el) {
-        const parallaxInstance = new Parallax(el, {
-          // relativeInput: true,
-        });
-      }
-    });
-  }
-  parallaxPromo();
+  // function parallaxPromo() {
+  //   const scene = document.querySelectorAll('.parallax-scene');
+  //   scene.forEach((el) => {
+  //     if (el) {
+  //       const parallaxInstance = new Parallax(el);
+  //     }
+  //   });
+  // }
+  // parallaxPromo();
+
+  // function parrallaxTitle() {
+  //   const scene = document.querySelectorAll('.about-title__imgs');
+  //   scene.forEach((el) => {
+  //     if (el) {
+  //       const parallaxInstance = new Parallax(el);
+  //     }
+  //   });
+  // }
+  // parallaxPromo();
 
   function showProjects() {}
   showProjects();
