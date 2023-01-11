@@ -1,4 +1,51 @@
 window.addEventListener('DOMContentLoaded', () => {
+  // * ===== MultiStep Form
+  (function multiStep() {
+    const prevBtns = document.querySelectorAll('.btn-prev');
+    const nextBtns = document.querySelectorAll('.btn-next');
+    const formSteps = document.querySelectorAll('.form-submit__step');
+    const submitBtn = document.querySelector('.submit-btn');
+    const formInputs = document.querySelectorAll('.form-submit__input');
+    const formSelect = document.querySelector('.form-submit__select');
+    const formEnd = document.querySelector('.form-submit__end');
+    const formInner = document.querySelector('.form-submit__inner');
+
+    formSteps.forEach((el) => {
+      if (el) {
+        submitBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          formEnd.style.display = 'block';
+          formInner.style.display = 'none';
+        });
+
+        let formStepsNum = 0;
+
+        nextBtns.forEach((btn) => {
+          btn.addEventListener('click', () => {
+            formStepsNum++;
+            updateFormSteps();
+          });
+        });
+
+        prevBtns.forEach((btn) => {
+          btn.addEventListener('click', () => {
+            formStepsNum--;
+            updateFormSteps();
+          });
+        });
+
+        function updateFormSteps() {
+          formSteps.forEach((formStep) => {
+            formStep.classList.contains('active') &&
+              formStep.classList.remove('active');
+          });
+
+          formSteps[formStepsNum].classList.add('active');
+        }
+      }
+    });
+  })();
+
   (function parallaxAnim() {
     function parallaxIt(e, target, movement) {
       var $this = $('.additionally');
@@ -90,6 +137,23 @@ window.addEventListener('DOMContentLoaded', () => {
 
     $('.scheme-chart').mousemove(function (e) {
       parallaxIt(e, '.circles', 50);
+    });
+  })();
+
+  (function parallaxAnim() {
+    function parallaxIt(e, target, movement) {
+      var $this = $('.services');
+      var relX = e.pageX - $this.offset().left;
+      var relY = e.pageY - $this.offset().top;
+
+      TweenMax.to(target, 1, {
+        x: ((relX - $this.width() / 2) / $this.width()) * movement,
+        y: ((relY - $this.height() / 2) / $this.height()) * movement,
+      });
+    }
+
+    $('.services').mousemove(function (e) {
+      parallaxIt(e, '.arrow-circle', 50);
     });
   })();
 

@@ -316,7 +316,14 @@
         </ul>
       </nav>
 
-      <button class="header__toggle" type="button" aria-label="Открыть меню">
+      <button
+        class="header__toggle"
+        data-aos="fade-zoom"
+        data-aos-delay="100"
+        data-aos-duration="1000"
+        type="button"
+        aria-label="Открыть меню"
+      >
         <span class="header__toggle-line"></span>
       </button>
     </div>
@@ -498,73 +505,85 @@
         над Вашим проектом
       </p>
 
-      <form class="order__form form-order">
-        <div
-          class="form-order__wrapper"
-          data-aos="fade-up"
-          data-aos-duration="1000"
-        >
-          <div class="form-order__inner active">
-            <div class="form-order__group">
-              <p class="form-order__label">шаг 1 → <span>ИМЯ</span></p>
+      <form
+        class="request__form form-submit"
+        data-aos="fade-up"
+        data-aos-duration="1000"
+      >
+        <div class="form-submit__end">Спасибо! Заявка отправлена</div>
 
-              <input
-                class="form-order__input"
-                type="text"
-                placeholder="Введите Ваше имя"
-                required
-              />
-              <span class="form-order__line"></span>
+        <div class="form-submit__inner">
+          <div class="form-submit__steps">
+            <div class="form-submit__step active">
+              <div class="form-submit__group">
+                <p class="form-submit__label">шаг 1 → <span>ИМЯ</span></p>
+                <input
+                  class="form-submit__input"
+                  id="name"
+                  type="text"
+                  placeholder="Введите Ваше имя"
+                  required
+                />
+              </div>
+              <div class="form-submit__btns-group">
+                <button type="button" class="form-submit__btn btn btn-next">
+                  Далее
+                </button>
+              </div>
+            </div>
+            <div class="form-submit__step">
+              <div class="form-submit__group">
+                <p class="form-submit__label">
+                  шаг 2 → <span>КОНТАКТНЫЙ ТЕЛЕФОН</span>
+                </p>
+                <input
+                  class="form-submit__input"
+                  id="name"
+                  type="tel"
+                  placeholder="+7 (___) ___ - __ - __"
+                />
+              </div>
+              <div class="form-submit__btns-group">
+                <button
+                  type="button"
+                  href="#"
+                  class="form-submit__btn btn btn-prev"
+                >
+                  Назад
+                </button>
+                <button
+                  type="button"
+                  href="#"
+                  class="form-submit__btn btn btn-next"
+                >
+                  Далее
+                </button>
+              </div>
+            </div>
+            <div class="form-submit__step">
+              <div class="form-submit__group">
+                <p class="form-submit__label">
+                  шаг 3 → <span>ВЫБРАТЬ БРИФ</span>
+                </p>
+
+                <select class="select">
+                  <option value="1">Бриф на SEO - продвижение</option>
+                  <option value="2">Бриф на созданние сайта</option>
+                  <option value="3">Бриф на создание приложения</option>
+                </select>
+              </div>
+              <div class="form-submit__btns-group">
+                <button
+                  type="button"
+                  href="#"
+                  class="form-submit__btn btn submit-btn"
+                >
+                  Отправить
+                </button>
+              </div>
             </div>
           </div>
-          <div
-            class="form-order__inner"
-            data-aos="fade-up"
-            data-aos-duration="1000"
-          >
-            <div class="form-order__group">
-              <p class="form-order__label">
-                шаг 2 → <span>КОНТАКТНЫЙ ТЕЛЕФОН</span>
-              </p>
-
-              <input
-                class="form-order__input"
-                type="tel"
-                placeholder="+7 (___) ___ - __ - __"
-                required
-              />
-              <span class="form-order__line"></span>
-            </div>
-          </div>
-          <div
-            class="form-order__inner"
-            data-aos="fade-up"
-            data-aos-duration="1000"
-          >
-            <div class="form-order__group">
-              <p class="form-order__label">шаг 3 → <span>ВЫБРАТЬ БРИФ</span></p>
-              <select class="select">
-                <option value="1">Выберите бриф из списка</option>
-                <option value="2">Бриф 1</option>
-                <option value="3">Бриф 2</option>
-                <option value="4">Бриф 3</option>
-              </select>
-
-              <span class="form-order__line"></span>
-            </div>
-          </div>
-          <button
-            class="form-order__next"
-            type="submit"
-            data-aos="fade-up"
-            data-aos-duration="1000"
-          >
-            Далее
-          </button>
         </div>
-        <button class="form-order__btn btn-submit" type="submit">
-          Отправить заявку
-        </button>
       </form>
     </div>
   </div>
