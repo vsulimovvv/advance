@@ -157,111 +157,111 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   })();
 
-  (function dotsAnim() {
-    const canvas = document.querySelector('canvas');
-    if (canvas) {
-      canvas.width = window.innerWidth - 100;
-      canvas.height = window.innerHeight - 100;
-      const c = canvas.getContext('2d');
+  // (function dotsAnim() {
+  //   const canvas = document.querySelector('canvas');
+  //   if (canvas) {
+  //     canvas.width = window.innerWidth - 100;
+  //     canvas.height = window.innerHeight - 100;
+  //     const c = canvas.getContext('2d');
 
-      let mouse = {
-        x: undefined,
-        y: undefined,
-      };
+  //     let mouse = {
+  //       x: undefined,
+  //       y: undefined,
+  //     };
 
-      // При наведении мыши
-      let maxRadius = 3;
-      window.addEventListener('mousemove', function (e) {
-        mouse.x = e.x;
-        mouse.y = e.y;
-      });
-      window,
-        addEventListener('resize', function (e) {
-          canvas.width = window.innerWidth;
-          canvas.height = window.innerHeight;
-        });
-      function Circle(x, y, incrementX, incrementY, radius) {
-        this.x = x;
-        this.y = y;
-        this.incrementX = incrementX;
-        this.incrementY = incrementY;
-        // Размеры дотов
-        this.radius = Math.ceil(Math.random() * 1) + 0.8;
-        this.minRadius = Math.ceil(Math.random() * 1) + 0.8;
+  //     // При наведении мыши
+  //     let maxRadius = 3;
+  //     window.addEventListener('mousemove', function (e) {
+  //       mouse.x = e.x;
+  //       mouse.y = e.y;
+  //     });
+  //     window,
+  //       addEventListener('resize', function (e) {
+  //         canvas.width = window.innerWidth;
+  //         canvas.height = window.innerHeight;
+  //       });
+  //     function Circle(x, y, incrementX, incrementY, radius) {
+  //       this.x = x;
+  //       this.y = y;
+  //       this.incrementX = incrementX;
+  //       this.incrementY = incrementY;
+  //       // Размеры дотов
+  //       this.radius = Math.ceil(Math.random() * 1) + 0.8;
+  //       this.minRadius = Math.ceil(Math.random() * 1) + 0.8;
 
-        this.draw = function () {
-          c.beginPath();
-          c.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
-          let grd = c.createRadialGradient(
-            this.x,
-            this.y,
-            this.radius - 1,
-            this.x - 1,
-            this.y - 1,
-            this.radius / 5
-          );
+  //       this.draw = function () {
+  //         c.beginPath();
+  //         c.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+  //         let grd = c.createRadialGradient(
+  //           this.x,
+  //           this.y,
+  //           this.radius - 1,
+  //           this.x - 1,
+  //           this.y - 1,
+  //           this.radius / 5
+  //         );
 
-          grd.addColorStop(0, `#57383b`);
-          c.fillStyle = grd;
-          c.fill();
-        };
+  //         grd.addColorStop(0, `#57383b`);
+  //         c.fillStyle = grd;
+  //         c.fill();
+  //       };
 
-        this.update = function () {
-          this.x += this.incrementX;
-          this.y += this.incrementY;
-          if (this.x > innerWidth - this.radius) {
-            this.incrementX = -Math.random() * 5;
-          }
-          if (this.x < this.radius) {
-            this.incrementX = Math.random() * 5;
-          }
-          if (this.y > innerHeight - this.radius) {
-            this.incrementY = -Math.random() * 5;
-          }
-          if (this.y < this.radius) {
-            this.incrementY = Math.random() * 5;
-          }
-          if (
-            mouse.x - this.x < 50 &&
-            mouse.x - this.x > -50 &&
-            mouse.y - this.y < 50 &&
-            mouse.y - this.y > -50
-          ) {
-            if (this.radius < maxRadius) {
-              this.radius++;
-            }
-          } else if (this.radius > this.minRadius) {
-            this.radius--;
-          }
-          this.draw();
-        };
-      }
-      //  + 1000
-      let num = Math.ceil(Math.random() * 50) + 1000;
-      let circleArr = [];
-      console.log(circleArr);
-      function init() {
-        circleArr = [];
-        for (let i = 1; i < num; i++) {
-          let x = Math.floor(Math.random() * window.innerWidth);
-          let y = Math.floor(Math.random() * window.innerHeight);
-          let incrementX = (Math.random() - 0.5) * 1;
-          let incrementY = (Math.random() - 0.5) * 1;
-          let radius = Math.ceil(Math.random() * 5) + 4;
-          circleArr.push(new Circle(x, y, incrementX, incrementY, radius));
-        }
-      }
-      init();
-      function animate() {
-        requestAnimationFrame(animate);
-        c.clearRect(0, 0, innerWidth, innerHeight);
-        for (let i = 0; i < circleArr.length; i++) {
-          circleArr[i].update();
-        }
-      }
-      animate();
-    }
-  })();
+  //       this.update = function () {
+  //         this.x += this.incrementX;
+  //         this.y += this.incrementY;
+  //         if (this.x > innerWidth - this.radius) {
+  //           this.incrementX = -Math.random() * 5;
+  //         }
+  //         if (this.x < this.radius) {
+  //           this.incrementX = Math.random() * 5;
+  //         }
+  //         if (this.y > innerHeight - this.radius) {
+  //           this.incrementY = -Math.random() * 5;
+  //         }
+  //         if (this.y < this.radius) {
+  //           this.incrementY = Math.random() * 5;
+  //         }
+  //         if (
+  //           mouse.x - this.x < 50 &&
+  //           mouse.x - this.x > -50 &&
+  //           mouse.y - this.y < 50 &&
+  //           mouse.y - this.y > -50
+  //         ) {
+  //           if (this.radius < maxRadius) {
+  //             this.radius++;
+  //           }
+  //         } else if (this.radius > this.minRadius) {
+  //           this.radius--;
+  //         }
+  //         this.draw();
+  //       };
+  //     }
+  //     //  + 1000
+  //     let num = Math.ceil(Math.random() * 50) + 1000;
+  //     let circleArr = [];
+  //     console.log(circleArr);
+  //     function init() {
+  //       circleArr = [];
+  //       for (let i = 1; i < num; i++) {
+  //         let x = Math.floor(Math.random() * window.innerWidth);
+  //         let y = Math.floor(Math.random() * window.innerHeight);
+  //         let incrementX = (Math.random() - 0.5) * 1;
+  //         let incrementY = (Math.random() - 0.5) * 1;
+  //         let radius = Math.ceil(Math.random() * 5) + 4;
+  //         circleArr.push(new Circle(x, y, incrementX, incrementY, radius));
+  //       }
+  //     }
+  //     init();
+  //     function animate() {
+  //       requestAnimationFrame(animate);
+  //       c.clearRect(0, 0, innerWidth, innerHeight);
+  //       for (let i = 0; i < circleArr.length; i++) {
+  //         circleArr[i].update();
+  //       }
+  //     }
+  //     animate();
+  //   }
+  // })();
 
   (function loadForm() {
     let inputs = document.querySelectorAll('.input-file__input');
@@ -383,27 +383,6 @@ window.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('mousemove', (e) => {
     magneticMouseEvent.onMouseMove(e);
   });
-  // !
-
-  // function parallaxPromo() {
-  //   const scene = document.querySelectorAll('.parallax-scene');
-  //   scene.forEach((el) => {
-  //     if (el) {
-  //       const parallaxInstance = new Parallax(el);
-  //     }
-  //   });
-  // }
-  // parallaxPromo();
-
-  // function parrallaxTitle() {
-  //   const scene = document.querySelectorAll('.about-title__imgs');
-  //   scene.forEach((el) => {
-  //     if (el) {
-  //       const parallaxInstance = new Parallax(el);
-  //     }
-  //   });
-  // }
-  // parallaxPromo();
 
   function showProjects() {}
   showProjects();
