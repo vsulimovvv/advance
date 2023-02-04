@@ -2490,6 +2490,7 @@ canvas {
   display: inline-block;
   width: auto;
   padding-right: 15px;
+  color: var(--color-dark);
 }
 .mobile-menu .mobile-menu-box__name.accordion-control::after {
   position: absolute;
