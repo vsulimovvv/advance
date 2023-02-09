@@ -157,112 +157,6 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   })();
 
-  // (function dotsAnim() {
-  //   const canvas = document.querySelector('canvas');
-  //   if (canvas) {
-  //     canvas.width = window.innerWidth - 100;
-  //     canvas.height = window.innerHeight - 100;
-  //     const c = canvas.getContext('2d');
-
-  //     let mouse = {
-  //       x: undefined,
-  //       y: undefined,
-  //     };
-
-  //     // При наведении мыши
-  //     let maxRadius = 3;
-  //     window.addEventListener('mousemove', function (e) {
-  //       mouse.x = e.x;
-  //       mouse.y = e.y;
-  //     });
-  //     window,
-  //       addEventListener('resize', function (e) {
-  //         canvas.width = window.innerWidth;
-  //         canvas.height = window.innerHeight;
-  //       });
-  //     function Circle(x, y, incrementX, incrementY, radius) {
-  //       this.x = x;
-  //       this.y = y;
-  //       this.incrementX = incrementX;
-  //       this.incrementY = incrementY;
-  //       // Размеры дотов
-  //       this.radius = Math.ceil(Math.random() * 1) + 0.8;
-  //       this.minRadius = Math.ceil(Math.random() * 1) + 0.8;
-
-  //       this.draw = function () {
-  //         c.beginPath();
-  //         c.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
-  //         let grd = c.createRadialGradient(
-  //           this.x,
-  //           this.y,
-  //           this.radius - 1,
-  //           this.x - 1,
-  //           this.y - 1,
-  //           this.radius / 5
-  //         );
-
-  //         grd.addColorStop(0, `#57383b`);
-  //         c.fillStyle = grd;
-  //         c.fill();
-  //       };
-
-  //       this.update = function () {
-  //         this.x += this.incrementX;
-  //         this.y += this.incrementY;
-  //         if (this.x > innerWidth - this.radius) {
-  //           this.incrementX = -Math.random() * 5;
-  //         }
-  //         if (this.x < this.radius) {
-  //           this.incrementX = Math.random() * 5;
-  //         }
-  //         if (this.y > innerHeight - this.radius) {
-  //           this.incrementY = -Math.random() * 5;
-  //         }
-  //         if (this.y < this.radius) {
-  //           this.incrementY = Math.random() * 5;
-  //         }
-  //         if (
-  //           mouse.x - this.x < 50 &&
-  //           mouse.x - this.x > -50 &&
-  //           mouse.y - this.y < 50 &&
-  //           mouse.y - this.y > -50
-  //         ) {
-  //           if (this.radius < maxRadius) {
-  //             this.radius++;
-  //           }
-  //         } else if (this.radius > this.minRadius) {
-  //           this.radius--;
-  //         }
-  //         this.draw();
-  //       };
-  //     }
-  //     //  + 1000
-  //     let num = Math.ceil(Math.random() * 50) + 1000;
-  //     let circleArr = [];
-  //     console.log(circleArr);
-  //     function init() {
-  //       circleArr = [];
-  //       for (let i = 1; i < num; i++) {
-  //         let x = Math.floor(Math.random() * window.innerWidth);
-  //         let y = Math.floor(Math.random() * window.innerHeight);
-  //         let incrementX = (Math.random() - 0.5) * 1;
-  //         let incrementY = (Math.random() - 0.5) * 1;
-  //         let radius = Math.ceil(Math.random() * 5) + 4;
-  //         circleArr.push(new Circle(x, y, incrementX, incrementY, radius));
-  //       }
-  //     }
-  //     init();
-  //     function animate() {
-  //       requestAnimationFrame(animate);
-  //       c.clearRect(0, 0, innerWidth, innerHeight);
-  //       for (let i = 0; i < circleArr.length; i++) {
-  //         circleArr[i].update();
-  //       }
-  //     }
-  //     animate();
-  //   }
-  // })();
-
   (function loadForm() {
     let inputs = document.querySelectorAll('.input-file__input');
     Array.prototype.forEach.call(inputs, function (input) {
@@ -304,7 +198,6 @@ window.addEventListener('DOMContentLoaded', () => {
     onInit() {
       const _this = this;
 
-      //===
       const events = document.querySelectorAll('.magnetic-btn');
       for (let i = 0; i < events.length; i++) {
         _this.events.push({
@@ -320,7 +213,6 @@ window.addEventListener('DOMContentLoaded', () => {
         });
       }
 
-      //===
       for (let i = 0; i < this.events.length; i++) {
         const v = this.events[i];
         v.enter.func = function (e) {
@@ -337,7 +229,6 @@ window.addEventListener('DOMContentLoaded', () => {
     },
 
     onMouseMove(e) {
-      //===
       if (this.ing && this.target) {
         const x = e.clientX;
         const y = e.clientY;
@@ -366,15 +257,12 @@ window.addEventListener('DOMContentLoaded', () => {
     },
 
     onDestroy() {
-      //===
       for (let i = 0; i < this.events.length; i++) {
         const v = this.events[i];
         v.el.removeEventListener('mouseenter', v.enter.func);
         v.el.removeEventListener('mouseleave', v.leave.func);
       }
       this.events = [];
-
-      //===
       this.ing = false;
     },
   };
@@ -468,7 +356,7 @@ window.addEventListener('DOMContentLoaded', () => {
   (function fixedHeader() {
     function scrollHeader() {
       const nav = document.querySelector('header');
-      if (this.scrollY >= 90) {
+      if (this.scrollY >= 50) {
         nav.classList.add('scroll-header');
       } else {
         nav.classList.remove('scroll-header');
@@ -480,7 +368,7 @@ window.addEventListener('DOMContentLoaded', () => {
     // ! Change
     function changeBg() {
       const header = document.querySelector('header');
-      if (window.pageYOffset >= 90) {
+      if (window.pageYOffset >= 50) {
         header.classList.add('scroll-header');
       }
     }
@@ -518,6 +406,37 @@ window.addEventListener('DOMContentLoaded', () => {
   // * ===== Show Contacts Form
   (function showMenu() {
     const menuBtn = document.querySelectorAll('.btn-show-contacts');
+    const menu = document.querySelector('.contacts-right');
+    const menuCloseBtn = document.querySelector('.contacts-right__close');
+    const body = document.querySelector('body');
+    const overlay = document.querySelector('.overlay');
+
+    if (menu) {
+      menuBtn.forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+          menu.classList.toggle('active');
+          overlay.classList.toggle('active');
+          body.classList.toggle('no-scroll');
+        });
+      });
+
+      overlay.addEventListener('click', (e) => {
+        menu.classList.remove('active');
+        overlay.classList.remove('active');
+        body.classList.remove('no-scroll');
+      });
+
+      menuCloseBtn.addEventListener('click', (e) => {
+        menu.classList.remove('active');
+        overlay.classList.remove('active');
+        body.classList.remove('no-scroll');
+      });
+    }
+  })();
+
+  // * ===== Show Contacts Form
+  (function showMenu() {
+    const menuBtn = document.querySelectorAll('.header__btn-order');
     const menu = document.querySelector('.contacts-right');
     const menuCloseBtn = document.querySelector('.contacts-right__close');
     const body = document.querySelector('body');

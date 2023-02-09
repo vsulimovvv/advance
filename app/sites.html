@@ -238,7 +238,8 @@
           Telegram
         </a>
       </div>
-      <nav class="menu">
+
+      <nav class="header__menu menu">
         <ul class="menu__list">
           <li
             class="menu__item"
@@ -317,6 +318,16 @@
       </nav>
 
       <button
+        class="header__btn-order"
+        data-aos="fade-zoom"
+        data-aos-delay="100"
+        data-aos-duration="1000"
+        type="button"
+      >
+        Обсудить проект
+      </button>
+
+      <button
         class="header__toggle"
         data-aos="fade-zoom"
         data-aos-delay="100"
@@ -329,6 +340,79 @@
     </div>
   </div>
 </header>
+
+      <aside class="contacts-right">
+  <div class="contacts-right__wrapper">
+    <div class="contacts-right__top">
+      <button class="contacts-right__close" type="button">закрыть форму</button>
+    </div>
+
+    <div class="contacts-right__heading">
+      <span class="contacts-right__title">
+        Давайте начнем работу <br />
+        над Вашим проектом
+      </span>
+      <p class="contacts-right__text">
+        Оставьте Ваши данные и мы свяжемся с Вами в ближайшее время
+      </p>
+    </div>
+
+    <form class="form-submit">
+      <label class="form-submit__group">
+        <input
+          class="form-submit__input"
+          type="text"
+          placeholder="Введите Ваше имя"
+        />
+      </label>
+      <label class="form-submit__group">
+        <input
+          class="form-submit__input"
+          type="text"
+          placeholder="Контактный телефон"
+        />
+      </label>
+      <div class="form-submit__policy">
+        Отправляя заявку Вы соглашаетесь с
+        <a href="#">политикой конфиденциальности</a>
+      </div>
+      <div class="form-submit__bottom">
+        <button class="form-submit__btn btn" type="submit">Отправить</button>
+
+        <div class="form-submit__file file-btn">
+          <label class="file-btn__wrapper input-file" for="mobile">
+            <span class="file-btn__icon">
+              <svg
+                class="custom-file-upload-icon"
+                width="20"
+                height="20"
+                viewBox="0 0 20 20"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M12.2207 1.83984C10.3809 -5.96046e-08 7.38478 -5.96046e-08 5.54689 1.83984L0.449237 6.93359C0.416034 6.9668 0.398456 7.01172 0.398456 7.05859C0.398456 7.10547 0.416034 7.15039 0.449237 7.18359L1.16994 7.9043C1.20288 7.9371 1.24748 7.95551 1.29396 7.95551C1.34045 7.95551 1.38504 7.9371 1.41799 7.9043L6.51564 2.81055C7.14846 2.17773 7.99025 1.83008 8.88478 1.83008C9.77931 1.83008 10.6211 2.17773 11.252 2.81055C11.8848 3.44336 12.2324 4.28516 12.2324 5.17773C12.2324 6.07227 11.8848 6.91211 11.252 7.54492L6.05666 12.7383L5.21486 13.5801C4.42775 14.3672 3.14846 14.3672 2.36135 13.5801C1.98049 13.1992 1.7715 12.6934 1.7715 12.1543C1.7715 11.6152 1.98049 11.1094 2.36135 10.7285L7.51564 5.57617C7.6465 5.44727 7.81838 5.375 8.00197 5.375H8.00392C8.18752 5.375 8.35744 5.44727 8.48634 5.57617C8.6172 5.70703 8.68752 5.87891 8.68752 6.0625C8.68752 6.24414 8.61525 6.41602 8.48634 6.54492L4.27346 10.7539C4.24025 10.7871 4.22267 10.832 4.22267 10.8789C4.22267 10.9258 4.24025 10.9707 4.27346 11.0039L4.99416 11.7246C5.0271 11.7574 5.0717 11.7758 5.11818 11.7758C5.16467 11.7758 5.20926 11.7574 5.24221 11.7246L9.45314 7.51367C9.84181 7.125 10.0547 6.60938 10.0547 6.06055C10.0547 5.51172 9.83986 4.99414 9.45314 4.60742C8.65041 3.80469 7.34572 3.80664 6.54299 4.60742L6.04299 5.10937L1.39064 9.75976C1.07488 10.0737 0.824586 10.4471 0.654267 10.8585C0.483948 11.2699 0.396997 11.711 0.398456 12.1562C0.398456 13.0605 0.751971 13.9102 1.39064 14.5488C2.05275 15.209 2.91994 15.5391 3.78713 15.5391C4.65431 15.5391 5.5215 15.209 6.18166 14.5488L12.2207 8.51367C13.1094 7.62305 13.6016 6.4375 13.6016 5.17773C13.6035 3.91602 13.1113 2.73047 12.2207 1.83984Z"
+                  fill="black"
+                />
+              </svg>
+            </span>
+            <div class="file-btn__upload">
+              Прикрепить файлы
+              <span class="file-btn__count input-file__count">например бриф</span>
+            </div>
+          </label>
+          <input
+            class="input-file__input"
+            id="mobile"
+            type="file"
+            name="mobile"
+            multiple
+          />
+        </div>
+      </div>
+    </form>
+  </div>
+</aside>
 
 
       <main class="main mt">
@@ -757,8 +841,7 @@
     </div>
   </div>
 </section>
- 
-        <section class="faq">
+ <section class="faq">
   <div class="container">
     <div
       class="faq__uppertitle uppertitle"
@@ -1240,4 +1323,3 @@
 
   </body>
 </html>
-
