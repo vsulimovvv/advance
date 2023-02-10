@@ -7557,6 +7557,8 @@ input[type=file] {
   -webkit-transform: translateX(100%);
       -ms-transform: translateX(100%);
           transform: translateX(100%);
+  opacity: 0;
+  visibility: hidden;
   overflow-y: auto;
   -webkit-transition: 550ms ease-in-out;
   -o-transition: 550ms ease-in-out;
