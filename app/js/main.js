@@ -378,16 +378,18 @@ window.addEventListener('DOMContentLoaded', () => {
 
   // * ===== Show Menu
   (function showMenu() {
-    const menuBtn = document.querySelector('.header__toggle');
+    const menuBtn = document.querySelectorAll('.header__toggle');
     const menu = document.querySelector('.mobile-menu');
     const menuCloseBtn = document.querySelector('.mobile-menu__close');
     const body = document.querySelector('body');
     const overlay = document.querySelector('.overlay');
 
-    menuBtn.addEventListener('click', (e) => {
-      menu.classList.toggle('active');
-      overlay.classList.toggle('active');
-      body.classList.toggle('no-scroll');
+    menuBtn.forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        menu.classList.toggle('active');
+        overlay.classList.toggle('active');
+        body.classList.toggle('no-scroll');
+      });
     });
 
     overlay.addEventListener('click', (e) => {
