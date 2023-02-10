@@ -355,8 +355,8 @@ window.addEventListener('DOMContentLoaded', () => {
   // * ===== Fixed Header
   (function fixedHeader() {
     function scrollHeader() {
-      const nav = document.querySelector('header');
-      if (this.scrollY >= 50) {
+      const nav = document.querySelector('.header--hide');
+      if (this.scrollY >= 100) {
         nav.classList.add('scroll-header');
       } else {
         nav.classList.remove('scroll-header');
@@ -367,8 +367,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
     // ! Change
     function changeBg() {
-      const header = document.querySelector('header');
-      if (window.pageYOffset >= 50) {
+      const header = document.querySelector('.header--hide');
+      if (window.pageYOffset >= 100) {
         header.classList.add('scroll-header');
       }
     }
@@ -464,38 +464,4 @@ window.addEventListener('DOMContentLoaded', () => {
       });
     }
   })();
-
-  //   // * ===== Modal
-  //   (function modals() {
-  //     function bindModal(openBtn, modal, close) {
-  //       const openBtnEl = document.querySelectorAll(openBtn);
-  //       const modalEl = document.querySelector(modal);
-  //       const closeEl = document.querySelectorAll(close);
-  //       const body = document.querySelector('body');
-  //       if (modalEl) {
-  //         openBtnEl.forEach((el) => {
-  //           el.addEventListener('click', (e) => {
-  //             if (e.target) {
-  //               e.preventDefault();
-  //             }
-  //             modalEl.classList.add('active');
-  //             body.classList.add('no-scroll');
-  //           });
-  //         });
-  //         closeEl.forEach((btn) => {
-  //           btn.addEventListener('click', (e) => {
-  //             modalEl.classList.remove('active');
-  //             body.classList.remove('no-scroll');
-  //           });
-  //         });
-  //         modalEl.addEventListener('click', (e) => {
-  //           if (e.target === modalEl) {
-  //             modalEl.classList.remove('active');
-  //             body.classList.remove('no-scroll');
-  //           }
-  //         });
-  //       }
-  //     }
-  //     bindModal('.online-booking-btn', '.popup--online-booking', '.popup__close');
-  //   })();
 });
