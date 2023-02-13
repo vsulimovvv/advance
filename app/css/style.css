@@ -1546,7 +1546,6 @@ canvas {
   transition: 400ms ease;
   background-color: transparent;
   position: absolute;
-  overflow: hidden;
 }
 .header--hide {
   -webkit-transform: translateY(-100px);
