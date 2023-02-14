@@ -2975,6 +2975,9 @@ input[type=file] {
   -o-transition: 150ms ease;
   transition: 150ms ease;
 }
+.custom-file-upload-icon {
+  z-index: -1;
+}
 
 .brif {
   display: -webkit-box;
