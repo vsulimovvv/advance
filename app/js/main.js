@@ -87,13 +87,15 @@ window.addEventListener('DOMContentLoaded', () => {
   (function parallaxAnim() {
     function parallaxIt(e, target, movement) {
       var $this = $('.promo__wrapper');
-      var relX = e.pageX - $this.offset().left;
-      var relY = e.pageY - $this.offset().top;
+      if ($this) {
+        var relX = e.pageX - $this.offset().left;
+        var relY = e.pageY - $this.offset().top;
 
-      TweenMax.to(target, 1, {
-        x: ((relX - $this.width() / 2) / $this.width()) * movement,
-        y: ((relY - $this.height() / 2) / $this.height()) * movement,
-      });
+        TweenMax.to(target, 1, {
+          x: ((relX - $this.width() / 2) / $this.width()) * movement,
+          y: ((relY - $this.height() / 2) / $this.height()) * movement,
+        });
+      }
     }
 
     $('.promo__wrapper').mousemove(function (e) {
@@ -199,33 +201,37 @@ window.addEventListener('DOMContentLoaded', () => {
       const _this = this;
 
       const events = document.querySelectorAll('.magnetic-btn');
-      for (let i = 0; i < events.length; i++) {
-        _this.events.push({
-          el: events[i],
-          enter: {
-            func: null,
-            event: null,
-          },
-          leave: {
-            func: null,
-            event: null,
-          },
-        });
-      }
+      events.forEach((btn) => {
+        if (btn) {
+          for (let i = 0; i < events.length; i++) {
+            _this.events.push({
+              el: events[i],
+              enter: {
+                func: null,
+                event: null,
+              },
+              leave: {
+                func: null,
+                event: null,
+              },
+            });
+          }
 
-      for (let i = 0; i < this.events.length; i++) {
-        const v = this.events[i];
-        v.enter.func = function (e) {
-          _this.target = e.target;
-          _this.ing = true;
-        };
-        v.enter.event = v.el.addEventListener('mouseenter', v.enter.func);
-        v.leave.func = function (e) {
-          _this.onMouseLeave();
-          _this.ing = false;
-        };
-        v.leave.event = v.el.addEventListener('mouseleave', v.leave.func);
-      }
+          for (let i = 0; i < this.events.length; i++) {
+            const v = this.events[i];
+            v.enter.func = function (e) {
+              _this.target = e.target;
+              _this.ing = true;
+            };
+            v.enter.event = v.el.addEventListener('mouseenter', v.enter.func);
+            v.leave.func = function (e) {
+              _this.onMouseLeave();
+              _this.ing = false;
+            };
+            v.leave.event = v.el.addEventListener('mouseleave', v.leave.func);
+          }
+        }
+      });
     },
 
     onMouseMove(e) {
